@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>车辆详细配置</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../script/need/layer.css"/>
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/parameter" defer async="true"></script> 
+</head>
+
+<body class="bg detail1 detail2">
+	
+	<div class="container car_par">
+		<div class="title_top">
+			<!-- <div class="title_vv">颠三倒四多所所多</div>
+		         <div class="price">
+		         	￥<span class="red_price">222</span>
+		         </div> -->
+		</div>
+		<div class="car_par_list">
+			<div class="title_car">
+				基本参数
+			</div>
+			<ul class=" clearfix list more_parameter">
+
+			</ul>
+		</div>
+	</div>
+	
+	<script>
+		apiready = function() {
+
+				api.setWinAttr({
+					scrollEnabled: true
+				});
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+
+				var guid = api.pageParam.id;
+				api.showProgress({
+					title: '',
+					text: '加载中,请稍后...',
+					modal: false
+				});
+				//商品详情
+				GetProduct(guid);
+				//商品属性
+				GetProductAttribute(guid);
+			}
+
+		
+	</script>
+</body>
+
+</html>

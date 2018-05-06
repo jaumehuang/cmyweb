@@ -1,0 +1,449 @@
+@charset "UTF-8";
+
+/*          作者：1332204564@qq.com/jaume.huang
+                     时间：2017-07-29
+                      描述：车漫游样式
+ */
+
+
+/*公共样式--开始*/
+
+
+/*去除默认样式开始*/
+
+html,
+body,
+div,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dt,
+dd,
+ol,
+form,
+input,
+textarea,
+th,
+td,
+select {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	min-height: 100%;
+}
+
+body {
+	font-family: "PingFangSC-Regular";
+	font-size: 14px;
+	color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link,
+a:active,
+a:visited,
+a:hover {
+	/* background: none;*/
+	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+}
+
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+input,
+textarea {
+	outline: none;
+	border: none;
+}
+
+input {
+	background: #fff;
+}
+
+textarea {
+	resize: none;
+	overflow: auto;
+}
+
+.inline {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+
+/*去除默认样式结束*/
+
+
+/*公共样式开始*/
+
+* {
+	font-family: PingFangSC-Regular, sans-serif;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.tl {
+	text-align: left;
+}
+
+.tc {
+	text-align: center;
+}
+
+.tr {
+	text-align: right;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	content: ".";
+	width: 0;
+	height: 0;
+	visibility: hidden;
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+.ellipse {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.bg {
+	background: #eff0f4;
+}
+
+.large_btn {
+	text-align: center;
+	border: none;
+	outline: none;
+	margin-right: 0.375rem;
+	margin-left: 0.375rem;
+	padding: 0.3125rem 0;
+	background: #0090ff;
+	font-size: 0.40625rem;
+	color: #fff;
+	width: 92.5%;
+}
+
+.bottom_btn {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding: 0.46875rem 0;
+	color: #fff;
+	font-size: 0.46875rem;
+	width: 100%;
+	border: none;
+	background: #0090ff;
+	outline: none;
+}
+
+.btn_in {
+	width: 100%;
+	padding: 0.375rem 0;
+	background: #0090ff;
+	text-align: center;
+	color: #fff;
+	font-size: 0.5rem;
+	border: none;
+	box-shadow: 0px 2px 0px #b2ddff;
+	margin-top: 1.25rem;
+	border-radius: 0.125rem;
+	outline: none;
+	cursor: pointer;
+}
+
+
+/*头部*/
+
+.equipment {
+	/*height:0.65625rem;
+		background: #000;
+		position: fixed;
+		z-index: 500;
+		left:0;
+		right:0;
+		top:0;*/
+}
+
+.header {
+	height: 1.40625rem;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	padding: 0 0.375rem;
+	line-height: 1.40625rem;
+	color: #141414;
+	font-size: 0.40625rem;
+	border-bottom: 0.03125rem solid #e5e5e5;
+	background: #fff;
+	z-index: 100;
+
+}
+
+.header span {
+	font-size: 0.5625rem;
+}
+
+.header span.fl,
+.header span.fr {
+	text-indent: 0.46875rem;
+	font-size: 0.5625rem;
+	color: #333;
+}
+
+.header span.fr {
+	position: absolute;
+	right: 0.375rem;
+}
+
+.detail1 .header span:first-child {
+	float: left;
+	margin-left: 26%;
+}
+
+.foot {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+}
+
+.bg_color {
+	position: fixed;
+	background: #eff0f4;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.null {
+	height:1.875rem;
+}
+
+.null_info {
+	margin-top: 1.25rem;
+}
+
+
+/*底部导航*/
+
+.cart_foot {
+	background: #fff;
+	padding: 0.125rem 0;
+	border-top: 0.03125rem solid #aaaaaa;
+}
+
+.cart_foot a.fl {
+	width: 20%;
+	text-align: center;
+}
+
+.cart_foot a.fl span {
+	font-size: 0.375rem;
+	padding-top: 0.0625rem;
+	color:#333;
+}
+
+.cart_foot a.fl i {
+	display: block;
+	height: 0.625rem;
+	width: 0.71875rem;
+	margin: 0 auto;
+}
+
+.cart_foot a.fl .my-home {
+	background: url(../image/home_0.png) no-repeat center;
+	background-size: contain;
+}
+
+.cart_foot a.fl .my-sell {
+	background: url(../image/buycar_0.png) no-repeat center;
+	background-size: contain;
+}
+
+.cart_foot a.fl .my-shopping {
+	background: url(../image/shopping_0.png) no-repeat center;
+	background-size: contain;
+}
+.cart_foot a.fl .my-cart {
+	background: url(../image/cart_0.png) no-repeat center;
+	background-size: contain;
+}
+.cart_foot a.fl .my-person {
+	background: url(../image/person_0.png) no-repeat center;
+	background-size: contain;
+}
+
+.cart_foot a.fl span.active {
+	color: #0090ff;
+}
+
+.cart_foot a.active .my-home {
+	background: url(../image/home_1.png) no-repeat center;
+	background-size: contain;
+}
+
+.cart_foot a.active .my-sell {
+	background: url(../image/buycar_1.png) no-repeat center;
+	background-size: contain;
+}
+
+.cart_foot a.active .my-shopping {
+	background: url(../image/shopping_1.png) no-repeat center;
+	background-size: contain;
+}
+
+.cart_foot a.active .my-cart {
+	background: url(../image/cart_1.png) no-repeat center;
+	background-size: contain;
+}
+.cart_foot a.active .my-person {
+	background: url(../image/person_1.png) no-repeat center;
+	background-size: contain;
+}
+
+
+/*遮罩层*/
+
+.mask {
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .7);
+	z-index: 0;
+	display: none;
+}
+
+.null_list {
+	text-align-last: center;
+	margin-top: 3.125rem;
+	display: none;
+}
+
+.null_list img {
+	display: block;
+	margin: 0 auto;
+	width: 3.5625rem;
+	height: 2.6875rem;
+}
+
+.null_list span {
+	display: block;
+	text-align: center;
+	font-size: 0.375rem;
+	color: #333;
+	padding-top: 0.3125rem;
+}
+
+.search_null {
+	margin-top: 5.625rem;
+}
+
+
+/*数据加载*/
+
+@-webkit-keyframes rotation {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+.loadTime img {
+	-webkit-transform: rotate(360deg);
+	animation: rotation 1.5s linear infinite;
+	-moz-animation: rotation 1.5s linear infinite;
+	-webkit-animation: rotation 1.5s linear infinite;
+	-o-animation: rotation 1.5s linear infinite;
+}
+
+.loadTime {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 120px;
+	height:96px;
+	text-align: center;
+	background: rgba(0, 0, 0, .7);
+	border-radius: 4px;
+	z-index: 9999999999999999;
+}
+
+.loadTime img {
+	height: 50px;
+	width: 50px;
+	margin-top:6px;
+}
+
+.loadTime .text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #fff;
+	font-size: 16px;
+	margin-top:10px;
+}

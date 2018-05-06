@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>二维码</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<style>
+		.scanning {
+			height: 205px;
+			width: 205px;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			z-index: 1000;
+		}
+
+		.scanning img {
+			height: 100%;
+			width: 100%;
+		}
+
+		.scanning .line {
+			position: absolute;
+			top: 0;
+			left: 2px;
+			display: block;
+			width: 200px;
+			height: 11px;
+			background: url(../image/line_scanning.png) no-repeat center;
+			background-size: contain;
+			margin: 0 auto;
+			z-index: 100;
+		}
+	</style>
+</head>
+
+<body class="">
+
+	<div class="container">
+		<div class="scanning">
+			<img src="../image/scanning.png" />
+			<span class="line"></span>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script src="../script/jquery-3.2.1.min.js"></script>
+	<script src="../script/commom.js"></script>
+	<script>
+		function scanning() {
+
+			$(".line").animate({
+				"top": '200px'
+			}, 1200, function() {
+				$(".line").animate({
+					"top": '0'
+				}, 1200, function() {
+					scanning();
+				});
+			})
+		}
+		scanning();
+	</script>
+</body>
+
+</html>

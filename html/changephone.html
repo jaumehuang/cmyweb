@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>修改手机号码</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/swiper.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/changephone" defer async="true"></script> 
+</head>
+
+<body style="height:100%;background:#fff">
+	
+	<div class="container register change">
+		<form>
+
+			<div class="input_text">
+				<input type="text" placeholder="请输入需要绑定手机号" class="phone" />
+				<input type="text" placeholder="请输入验证" class="isCode" />
+				<span class="code_p">获取验证码</span>
+			</div>
+			<button class="btn_in" type="button">
+					确&nbsp;定
+				</button>
+
+		</form>
+		<!--<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/layer.js"></script>
+		<script type="text/javascript" src="../script/commom.js"></script>-->
+		<script>
+			apiready = function() {
+
+					var systemType = api.systemType;
+					if (systemType == "ios") {
+
+						$(".equipment").css("background", '#fff');
+					};
+					
+
+
+				}
+			
+		</script>
+	</div>
+</body>
+
+</html>

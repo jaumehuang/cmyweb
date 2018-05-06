@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>买车</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/buycar_frm" defer async="true"></script> 
+</head>
+
+<body class="" style="height:100%;background:#fff;">
+	<div class="equipment"></div>
+	<header class="header clearfix search_title">
+		<div class="fl location_p" onclick="javascript:window.location.href='city_list.html'">
+			<span class="fl city" style="font-size:0.375rem;"></span>
+			<i class="iconfont icon-fangxiangxia fl"></i>
+		</div>
+		<div class="fl search_p">
+			<i class="iconfont icon-sousuo"></i>
+			<input type="text" placeholder="搜索喜欢的车型" onclick="open_win('search')" />
+		</div>
+		<img class="fr switch" src="../image/switch.png" style="height:0.5rem;width:0.5625rem;margin-top:0.4375rem;cursor:pointer;-webkit-tap-highlight-color:transparent" />
+	</header>
+	<div class="container buycar clearfix">
+		<div class="search_list clearfix">
+			<a href="#" class="fl">
+				<span class="title">排序</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+				<ul class="sortList intelligence">
+					<li class="list_li clearfix"><span class="fl">智能排序</span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">最新上架   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">价格最低   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">价格最高  </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">车龄最短   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">里程最少   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+				</ul>
+
+			</a>
+			<a href="buy_brand.html" class="fl brand_list">
+				<span class="title">品牌</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+			</a>
+			<a href="#" class="fl">
+				<span class="title">价格</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+				<ul class="sortList price_list clearfix" style=";">
+					<li class="list_li">不限</li>
+					<li class="list_li">3万漫豆以下</li>
+					<li class="list_li">3-5万漫豆</li>
+					<li class="list_li">5-7万漫豆</li>
+					<li class="list_li">7-9万漫豆</li>
+					<li class="list_li">9-12万漫豆</li>
+					<li class="list_li">12-16万漫豆</li>
+					<li class="list_li">16-20万漫豆</li>
+					<li class="list_li">20万漫豆以上</li>
+				</ul>
+
+			</a>
+			<a href="buy_filter.html" class="fl screen_list">
+				<span class="title">筛选</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+			</a>
+		</div>
+
+		<div class="product_list">
+			<ul class="list">
+
+			</ul>
+
+			<div class="loading_more">
+				<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+				<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="mask"></div>
+	<div class="null_list">
+		<img src="../image/null_list.png" />
+		<span>搜索不到数据</span>
+	</div>
+    <div class="null" style="height:1rem"></div>
+		<footer class="foot cart_foot clearfix" id="footer">
+			<a class="fl " href="home.html">
+				<i class="my-home"></i>
+				<span class="">首页</span>
+			</a>
+			<a class="fl" href="shopping.html">
+				<i class="my-shopping"></i>
+				<span class="">商城</span>
+			</a>
+			<a class="fl active" href="buycar_frm.html">
+				<i class="my-sell"></i>
+				<span class="active">买车</span>
+			</a>
+			<a class="fl cart " href="#">
+				<i class="my-cart"></i>
+				<span class="">购物车</span>
+			</a>
+			<a class="fl person" href="#">
+				<i class="my-person"></i>
+				<span class="">我的</span>
+			</a>
+		</footer>
+</body>
+ 
+</html>

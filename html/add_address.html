@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>新增地址</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/layout.min.css" />
+	<link rel="stylesheet" href="../css/scs.min.css" />
+	<script type="text/javascript" src="../script/js/citys.js"></script>
+	<script src="../script/lib/require.js" data-main="../script/js/add_address" defer async="true"></script> 
+	<style> 
+
+		</style>
+</head>
+
+<body style="background:#fff">
+	
+	<form class="container add_address">
+		<div class="clearfix input_in">
+			<span class="fl">收货人：</span>
+			<input class="fl name" type="text" placeholder="输入收货人名称" />
+		</div>
+		<div class="clearfix input_in">
+			<span class="fl">手机号：</span>
+			<input class="fl phone" type="text" placeholder="输入手机号" />
+		</div>
+		<div class="clearfix input_in addreslist">
+			<span class="fl">所在地区：</span>
+			<div class="fr" style="width:70%">
+				<!--<span class="addrees_p"></span>-->
+				<input type="text" class="addrees_p ellipse" readonly placeholder="Click me to pick an address" id="myAddrs" name="addr" data-key="4-84-1298" value="山西省 太原市 万柏林区" style="text-align: right;"/>
+				<i class="iconfont icon-iconfontright fr" style="margin-top:4px;"></i>
+			</div>
+		</div>
+		<div class="clearfix input_in">
+			<span class="fl ">详细地址：</span>
+			<textarea class="fl addressDeails" placeholder="输入详细地址" rows="3"></textarea>
+		</div>
+		<button class="btn_in" type="button" >保存</button>
+	</form>
+    
+	<script>
+		apiready = function() {
+				api.setWinAttr({
+					scrollEnabled: true
+				});
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+				var str = api.pageParam.id;
+				if (str) {
+					var allList = str.split("&");
+					var allList2 = allList[3].split("-");
+					$(".header span").text("编辑地址");
+					$("input.name").val(allList[1]);
+					$("input.phone").val(allList[2]);
+					$(".addrees_p").text(allList2[0]);
+					$(".addressDeails").val(allList2[1]);
+				};
+			}
+	
+		//add_address增加地址
+		function add_address() {
+
+			if (api.pageParam.id) {
+				var guid = (api.pageParam.id).split("&")[0];
+				var param = {
+					MemLoginId: $api.getStorage('userData').Phone,
+					Name: $("input.name").val(),
+					ShengShi: $(".addrees_p").text(),
+					Address: $(".addressDeails").val(),
+					Mobile: $("input.phone").val(),
+					Guid: guid
+				}
+
+			} else {
+				var param = {
+					MemLoginId: $api.getStorage('userData').Phone,
+					Name: $("input.name").val(),
+					ShengShi: $(".addrees_p").text(),
+					Address: $(".addressDeails").val(),
+					Mobile: $("input.phone").val(),
+
+				}
+
+			}
+
+			//验证手机号码
+			if ($("input.name").val().length == 0 || $("input.phone").val().length == 0 || $(".addrees_p").text().lenght == 0 || $(".addressDeails").val().length == 0 || $("input.phone").val().length == 0) {
+				layer.open({
+					content: '输入框不能为空',
+					time: 2 //2秒后自动关闭
+				});
+
+			} else if (!(/^1[3|4|5|8][0-9]\d{4,8}$/).test($("input.phone").val())) {
+				
+				layer.open({
+					content: '手机号码格式错误！',
+					time: 2 //2秒后自动关闭
+				});
+			} else {
+				//初始化
+				api.showProgress({
+					title: '',
+					text: '加载中,请稍后...',
+					modal: false
+				});
+				api.ajax({
+					url: httpurl + "?action=EditAddress",
+					method: 'post',
+					dataType: "json",
+					timeout: 10,
+					data: {
+						values: param,
+					}
+				}, function(ret, err) {
+
+					api.hideProgress();
+					
+					if (!ret.isError) {
+						api.sendEvent({
+							name: 'add_address',
+							extra: {}
+						});
+						api.closeWin();
+					} else {
+						
+						api.toast({
+							msg: '网速不好',
+							duration: 2000,
+							location: 'middle'
+						});
+					}
+				})
+			}
+		}
+
+	</script>
+</body>
+
+</html>

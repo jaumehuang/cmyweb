@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>买车</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+<style>
+
+</style>
+
+<body class="" style="height:100%;background:#fff;">
+	<div class="equipment"></div>
+	<header class="header clearfix search_title" id="header">
+		<i class="iconfont icon-xiangzuo fl add_close" onclick="api.closeWin()" style="position: absolute;left:0.3125rem"></i>
+		<div class="fl location_p" onclick="open_win('city_list')">
+			<span class="fl city" style="font-size:0.375rem;">广州</span>
+			<i class="iconfont icon-fangxiangxia fl"></i>
+		</div>
+		<div class="fl search_p">
+			<i class="iconfont icon-sousuo"></i>
+			<input type="text" placeholder="搜索喜欢的车型" onclick="open_win('search')" />
+		</div>
+		<img class="fr switch" src="../image/switch.png" style="height:0.5rem;width:0.5625rem;margin-top:0.4375rem;cursor:pointer;-webkit-tap-highlight-color:transparent" />
+	</header>
+	<div class="container buycar clearfix">
+		<div class="search_list clearfix">
+			<a href="#" class="fl">
+				<span class="title">排序</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+				<ul class="sortList intelligence">
+					<li class="list_li clearfix"><span class="fl">智能排序</span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">最新上架   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">价格最低   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">价格最高  </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">车龄最短   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+					<li class="list_li clearfix"><span class="fl">里程最少   </span> <i class="fr iconfont icon-iconfontright"></i></li>
+				</ul>
+
+			</a>
+			<a href="#" class="fl brand_list" onclick="open_win('buy_brand')">
+				<span class="title">品牌</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+			</a>
+			<a href="#" class="fl">
+				<span class="title">价格</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+				<ul class="sortList price_list clearfix" style=";">
+					<li class="list_li">不限</li>
+					<li class="list_li">3万以下</li>
+					<li class="list_li">3-5万</li>
+					<li class="list_li">5-7万</li>
+					<li class="list_li">7-9万</li>
+					<li class="list_li">9-12万</li>
+					<li class="list_li">12-16万</li>
+					<li class="list_li">16-20万</li>
+					<li class="list_li">20万以上</li>
+				</ul>
+
+			</a>
+			<a href="#" class="fl screen_list" onclick="open_win('buy_filter')">
+				<span class="title">筛选</span>
+				<i class="iconfont icon-fangxiangxia title"></i>
+			</a>
+		</div>
+
+		<div class="product_list">
+			<ul class="list">
+
+			</ul>
+			<div class="loading_more">
+				<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+				<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="mask"></div>
+	<div class="null_list">
+		<img src="../image/null_list.png" />
+		<span>搜索不到数据</span>
+	</div>
+
+</body>
+<script src="../script/jquery-3.2.1.min.js"></script>
+<script src="../script/jquery.lazyload.js"></script>
+<script src="../script/api.js"></script>
+<script type="text/javascript" src="../script/commom.js"></script>
+<script>
+	var flag = true;
+	//效果切换
+	$(".switch").on("click", function() {
+
+		if ($(".product_list .list").hasClass("buycar_type")) {
+
+			$(".product_list .list").removeClass("buycar_type");
+
+		} else {
+
+			$(".product_list .list").addClass("buycar_type");
+		}
+
+	});
+	$(".buycar .search_list a").on("click", function(e) {
+
+		e.stopPropagation();
+
+		var $self = $(this);
+		$self.children(".title").css("color", "#0090ff");
+		$self.siblings().children(".title").css("color", "#333");
+		$self.children(".sortList").slideToggle(300, function() {
+			if ($self.children(".sortList").css("display") == 'none') {
+				$(".mask").hide();
+			}
+		});
+		$self.siblings().children(".sortList").hide();
+
+		$(".mask").show();
+
+		if ($self.is(".brand_list") || $self.is(".screen_list")) {
+			$(".mask").hide();
+		}
+		return false;
+	});
+	$(".mask").on("click", function() {
+
+		$(".buycar .search_list a .sortList").hide();
+		$(this).hide();
+	})
+
+	apiready = function() {
+
+			api.showProgress({
+				title: '',
+				text: '加载中,请稍后...',
+				modal: false
+			});
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+			var code = $(".location_p").attr("data-code");
+			if ($api.getStorage('city')) {
+
+				var code = $(".location_p").attr("data-code", $api.getStorage('city').code);
+				$(".location_p span").text($api.getStorage('city').city);
+
+			};
+			//监听城市
+			api.addEventListener({
+
+				name: 'chooseCity'
+			}, function(ret) {
+				if (ret && ret.value) {
+
+					if ($(".product_list .list").has("li")) {
+
+						$(".product_list .list").find("li").remove();
+					};
+					var value = ret.value;
+					$(".location_p span").text(value.key1);
+					$(".location_p").attr("data-code", value.key2);
+					var city = {
+							city: value.key1,
+							code: value.key2
+						}
+						// alert(JSON.stringify(param)+"1212");
+					$api.setStorage('city', city);
+					var prop = {
+
+						"cityCode": value.key2
+
+					};
+					$(".product_list .list").attr("data-prop", JSON.stringify(prop));
+					carList(prop, 1, 1);
+				};
+			});
+			//  事件筛选监听
+			api.addEventListener({
+				name: 'buy_filter'
+			}, function(ret) {
+
+				if (ret && ret.value) {
+					if ($(".product_list .list").has("li")) {
+
+						$(".product_list .list").find("li").remove();
+					};
+					var value = ret.value;
+					var Prop = {
+
+						"Prop": value.key1,
+
+					}
+
+					$(".product_list .list").attr("data-prop", JSON.stringify(Prop));
+
+					carList(Prop, 1, 1);
+
+				}
+			});
+			//监听品牌
+			api.addEventListener({
+				name: 'car_brand'
+			}, function(ret) {
+
+				if (ret && ret.value) {
+					if ($(".product_list .list").has("li")) {
+
+						$(".product_list .list").find("li").remove();
+					}
+					var value = ret.value;
+
+					var carBrand = {
+
+						"BrandGuid": value.key1
+
+					}
+					$(".product_list .list").attr("data-prop", JSON.stringify(carBrand));
+					carList(carBrand, 1, 1);
+				}
+			});
+			//监听滚动条
+			api.addEventListener({
+				name: 'scrolltobottom',
+				extra: {
+					threshold: 0
+				}
+			}, function(ret, err) {
+
+
+				if ($(".product_list .list").attr("bool-page") == 'true') {
+
+					var page = $(".product_list .list").attr("data-page");
+					$(".loading_more").find(".loading-time").show();
+					$(".loading_more").find(".loading_fish").hide();
+					page++;
+					var prop = $(".product_list .list").attr("data-prop");
+
+					if (prop == '' || prop == null || prop == 'undefined') {
+
+						var param = {
+							PageIndex: page,
+							PageCount: 2,
+							CategoryId: 1,
+							cityCode: '',
+							class_ele: ".product_list .list"
+						};
+						GetProductList(param, 0);
+					} else {
+
+						var param = {
+							PageIndex: page,
+							PageCount: 6,
+							CategoryId: 1,
+							cityCode: $(".location_p").attr("data-code"),
+							class_ele: ".product_list .list"
+						};
+
+						param = $.extend({}, param, JSON.parse(prop));
+						GetProductList(param, 0);
+					}
+				}
+			});
+			//数据初始化
+			var guid = api.pageParam.id;
+			if (guid) {
+				var arryObj = JSON.parse(guid);
+				//显示上一页面传参的数据
+				$(".product_list .list").attr("data-prop", guid);
+				carList(arryObj, 1, 1);
+			} else {
+
+				if ($api.getStorage('city')) {
+					carList({
+						"cityCode": $api.getStorage('city').code
+					}, 1, 0);
+					var cityCode = {
+
+						"cityCode": $api.getStorage('city').code
+
+					}
+					$(".product_list .list").attr("data-prop", JSON.stringify(cityCode));
+				} else {
+
+					carList({
+						"cityCode": ''
+					}, 1, 0);
+					var cityCode = {
+
+						"cityCode": ''
+
+					};
+					$(".product_list .list").attr("data-prop", JSON.stringify(cityCode));
+
+				}
+
+			};
+			//筛选
+			screenList(1, 1);
+
+		}
+		//显示上一页面传参的数据
+	function carList(arryObj, PageIndex, type) {
+
+		var param = {
+			PageIndex: PageIndex,
+			PageCount: 6,
+			CategoryId: 1,
+			cityCode: $(".location_p").attr("data-code"),
+			class_ele: ".product_list .list"
+		};
+		$(param.class_ele).attr("bool-page", true);
+		param = $.extend({}, param, arryObj);
+
+		GetProductList(param, type);
+
+	}
+
+	//筛选车辆
+	function screenList(PageIndex, type) {
+		//价格
+		var priceArry = [{
+			"OrderId": "Desc"
+		}, {
+			"MinShopPrice": 0,
+			"MaxShopPrice": 30000
+		}, {
+			"MinShopPrice": 30000,
+			"MaxShopPrice": 50000
+		}, {
+			"MinShopPrice": 50000,
+			"MaxShopPrice": 70000
+		}, {
+			"MinShopPrice": 70000,
+			"MaxShopPrice": 90000
+		}, {
+			"MinShopPrice": 90000,
+			"MaxShopPrice": 120000
+		}, {
+			"MinShopPrice": 120000,
+			"MaxShopPrice": 160000
+		}, {
+			"MinShopPrice": 160000,
+			"MaxShopPrice": 200000
+		}, {
+			"MinShopPrice": 200000,
+			"MaxShopPrice": 20000000
+		}];
+		$(".price_list").find("li").on("click", function() {
+
+			$(this).addClass("active").siblings().removeClass("active");
+			var $index = $(this).index();
+
+			$(".mask").hide();
+			var param = {
+				PageIndex: PageIndex,
+				PageCount: 5,
+				CategoryId: 1,
+				Code: $(".location_p").attr("data-code"),
+				class_ele: ".product_list .list"
+			};
+			$(param.class_ele).attr("bool-page", true);
+			param = $.extend({}, param, priceArry[$index]);
+
+			$(".product_list .list").attr("data-prop", JSON.stringify(priceArry[$index]));
+			GetProductList(param, type);
+
+		});
+		//排序
+		var intellArry = [{
+			"OrderId": "Desc"
+		}, {
+			"IsShow": "IsNew"
+		}, {
+			"DescString": "shopprice",
+			"Desc": "Asc"
+		}, {
+			"DescString": "shopprice",
+			"Desc": "Desc"
+		}, {
+			"autoage": "Asc"
+		}, {
+			"mileage": "Asc"
+		}];
+		$(".intelligence").find("li").on("click", function() {
+
+			$(this).css("color", "#0090ff").siblings().css("color", "#333");
+			var $index = $(this).index();
+			$(".mask").hide();
+
+			var param = {
+				PageIndex: PageIndex,
+				PageCount: 6,
+				CategoryId: 1,
+				Code: $(".location_p").attr("data-code"),
+				class_ele: ".product_list .list"
+					// descstring:"shopprice",
+					// desc:"asc"
+			};
+			$(param.class_ele).attr("bool-page", true);
+			param = $.extend({}, param, intellArry[$index]);
+
+			$(".product_list .list").attr("data-prop", JSON.stringify(intellArry[$index]));
+
+			GetProductList(param, type);
+
+		})
+
+	};
+	//筛选函数
+</script>
+
+</html>

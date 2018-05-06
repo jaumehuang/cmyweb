@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+		<link rel="stylesheet" href="../script/need/layer.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/myorder1" defer async="true"></script>
+		<style>
+			.myorder .tab_list .teb_li .product_li .list_p_li{
+				margin-bottom: 0;
+			}
+			.myorder .nav_list .nav_li{
+				width:20%;
+			}
+		</style>
+	</head>
+
+	<body class="bg" id="ll">
+
+		<div class="container myorder" id="tabBox1">
+			<!--<div class="  ">-->
+			<ul class="clearfix hd nav_list">
+				<li class="nav_li active ">
+					全部
+				</li>
+				<li class="nav_li ">
+					备货中
+				</li>
+				<li class="nav_li ">
+					待取货
+				</li>
+				<li class="nav_li ">
+					待结算
+				</li>
+				<li class="nav_li ">
+					待评价
+				</li>
+			</ul>
+			<!--</div>-->
+			<div class="order bd swiper-container" id="tabBox1-bd">
+
+				<div class="tab_list bd swiper-wrapper" id="tabBox1-bd">
+					<!--全部订单-->
+					<div class="con swiper-slide">
+						<ul class="teb_li">
+
+							<div class="loading_more" style="display:block">
+								<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+								<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+							</div>
+						</ul>
+
+					</div>
+					<div class="con swiper-slide">
+						<!--待付款-->
+						<ul class="teb_li">
+
+							<div class="loading_more">
+								<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+								<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+							</div>
+						</ul>
+
+					</div>
+					<div class="con swiper-slide">
+						<!--待收货-->
+						<ul class="teb_li">
+
+							<div class="loading_more">
+								<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+								<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+							</div>
+						</ul>
+
+					</div>
+					<div class="con swiper-slide">
+						<!--待评价-->
+						<ul class="teb_li">
+
+							<div class="loading_more">
+								<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+								<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+							</div>
+						</ul>
+
+					</div>
+					<div class="con swiper-slide">
+						<!--待评价-->
+						<ul class="teb_li">
+
+							<div class="loading_more">
+								<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+								<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+							</div>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+
+</html>

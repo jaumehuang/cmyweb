@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>预约看车</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/mobiscroll.custom-2.6.2.min.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/appointment" defer async="true"></script> 
+</head>
+
+<body class=" detail1 detail2" style="background:#fff">
+	
+	<form class="container appointment">
+		<div class="appoint_li clearfix" id="demo_default">
+			<div class="fl">看车时间</div>
+			<!-- <input type="text" name="" id=""  placeholder="输入时间"  class="fl datainp" id="dateinfo" readonly> -->
+			<input class="datainp fl brand_time" type="text" placeholder="请选择时间" name="test_default" id="test_default">
+
+		</div>
+		<div class="appoint_li clearfix">
+			<div class="fl">联系方式</div>
+			<input type="text" name="" id="" value="" placeholder="联系方式" class="fl contact" />
+		</div>
+		<div class="appoint_li clearfix">
+			<div class="fl">看车地区</div>
+			<span class="fl">
+			 	 	<select name="" class="province">
+			 	 		<option value="">省级</option>
+			 	 	</select>
+			 	 	<select name="" class="city">
+			 	 		<option value="">市级</option>
+			 	 	</select>
+			 	 	<select name="" class="region">
+			 	 		<option value="">区级</option>
+			 	 	</select>
+			 	 </span>
+		</div>
+		<div class="warm">
+			提示：每人每天最多可预约三辆车！
+		</div>
+		<div class="btn_in" type="button">确认提交</div>
+	</form>
+
+	<!--<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+	<script type="text/javascript" src="../script/mobiscroll.custom-2.6.2.min.js"></script>-->
+	<script>
+		apiready = function() {
+
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+				var guid = api.pageParam.id;
+				PickTime(); //时间滑动器
+				region(guid);
+
+
+			}
+		
+
+		
+		
+	</script>
+
+</body>
+
+</html>

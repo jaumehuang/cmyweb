@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../script/need/layer.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/cart" defer async="true"></script>
+	</head>
+
+	<body class="bg cart">
+		<div class="equipment"></div>
+		<header class="header">
+
+			<span class="cart_title">购物车</span>
+			<span class="fr" onclick="window.location.href='cart_edit.html'">编辑</span>
+		</header>
+		<ul class="container list " style="margin-top:1.40rem">
+		</ul>
+		<div class="null_list search_null">
+			<img src="../image/null-cart.png" />
+			<span>购物车空空如也</span>
+		</div>
+		<div class="null" style="height:3.8rem"></div>
+		<footer class="foot clearfix foot_cart" style="bottom:1.5625rem">
+			<div class="fl" style="width:50%;">
+				<div class="all_checked">
+					<input type="checkbox" id="Checkbox1" />
+					<i class="icon"></i>
+				</div>
+				<div class="all_price">
+					合计：漫豆<span>0</span>
+				</div>
+			</div>
+			<a class="fl SubmitOrder payOrder" href="#" style="width:25%;height:107%;background: #c10000;color:#fff">
+				结算(<span style="color:#fff">0</span>)
+			</a>
+			<a class="fl SubmitOrder packorder" href="#" style="width:25%;height:107%;background: #f6bc61;color:#fff">
+				打包(<span style="color:#fff">0</span>)
+			</a>
+		</footer>
+		<footer class="foot cart_foot clearfix" id="footer">
+			<a class="fl " href="home.html">
+				<i class="my-home"></i>
+				<span class="">首页</span>
+			</a>
+			<a class="fl" href="shopping.html">
+				<i class="my-shopping"></i>
+				<span class="">商城</span>
+			</a>
+			<a class="fl" href="buycar_frm.html">
+				<i class="my-sell"></i>
+				<span class="">买车</span>
+			</a>
+			<a class="fl active" href="cart.html">
+				<i class="my-cart"></i>
+				<span class="active">购物车</span>
+			</a>
+			<a class="fl person" href="person.html">
+				<i class="my-person"></i>
+				<span class="">我的</span>
+			</a>
+		</footer>
+	</body>
+
+</html>

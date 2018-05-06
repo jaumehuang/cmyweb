@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>选择城市</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/city_list" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<div class="container city">
+		<div class="location_city">
+			当前定位城市：<span class=""></span>
+		</div>
+
+		<div id="letter"></div>
+		<div class="hot_list sort_box">
+
+			<div class="country" data-name="全国" data-code="">
+				<div class="country_name">全国</div>
+			</div>
+
+		</div>
+		<div class="initials">
+			<ul>
+				<!--<li></li> -->
+			</ul>
+		</div>
+	</div>
+	
+	<script>
+		apiready = function() {
+
+			api.setWinAttr({
+				scrollEnabled: true
+			});
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+
+
+			if ($api.getStorage('city')) {
+
+				$(".location_city span").text($api.getStorage('city').city);
+
+			}
+			cityList();
+
+		}
+
+
+		
+	</script>
+
+</body>
+
+</html>

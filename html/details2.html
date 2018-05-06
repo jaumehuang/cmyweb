@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>车漫游</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <script type="text/javascript" src="../script/lib/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css" />
+    <link rel="stylesheet" href="../script/need/layer.css" />
+    <link rel="stylesheet" href="../css/basic.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../script/lib/require.js" data-main="../script/js/details2" defer async="true"></script> 
+
+</head>
+
+<body class="bg detail1 detail2">
+    <div class="equipment"></div>
+    <div class="container">
+
+        <div class="details_title clearfix  title_top">
+
+
+        </div>
+        <div class="details_title clearfix" onclick="">
+            <div class="clearfix car_price">
+                <div class="fl">
+                    公司底价：<span class="price_txt"><span class="red_price low_price"></span></span>
+                </div>
+                <div class="fr">
+                    合伙利润：<span class="price_txt"><span class="red_price profit"></span></span>
+                </div>
+            </div>
+            <div class="title_car clearfix">
+                <i class="icon fl"></i>
+                <span class="fl">成交分成</span>
+            </div>
+            <ul class="price_list">
+
+            </ul>
+
+
+        </div>
+        <div class="details_title clearfix" onclick="">
+            <div class="title">
+                服务保障
+            </div>
+            <ul class="ensure_list clearfix">
+                <li class="list_li fl">
+                    <i class="iconfont icon-biankuangdagou"></i>
+                    <span class="">售后保障</span>
+                </li>
+                <li class="list_li fl">
+                    <i class="iconfont icon-biankuangdagou"></i>
+                    <span class="">14天可退</span>
+                </li>
+                <li class="list_li fl">
+                    <i class="iconfont icon-biankuangdagou"></i>
+                    <span class="">259项检测</span>
+                </li>
+                <li class="list_li fl">
+                    <i class="iconfont icon-biankuangdagou"></i>
+                    <span class="">100%个人车</span>
+                </li>
+
+            </ul>
+        </div>
+        <div class="details_title ">
+            <ul class="parameter_list clearfix">
+
+
+            </ul>
+            <a class="clearfix more_parl" >
+                <span class="fl">查看更多参数配置</span>
+                <i class="iconfont icon-iconfontright fr"></i>
+            </a>
+        </div>
+        <div class="details_title Agent " style="display:none">
+
+        </div>
+        <div class="details_title">
+            <div class="title_details">详情介绍</div>
+            <div class="title_bottom"></div>
+        </div>
+
+        <div class="footer details_foot">
+            <div class="item item_li clearfix">
+                <a class="service fl"  href="https://cmyqc.kf5.com/kchat/33756?from=%E5%9C%A8%E7%BA%BF%E6%94%AF%E6%8C%81">
+                    <i class="iconfont icon-service"></i>
+                    <div class="show-p">客服</div>
+                </a>
+                <a href="javascript:" class="call_phone fl">
+                    <i class="iconfont icon-fav"></i>
+                    <div class="show-p">收藏</div>
+                </a>
+            </div>
+
+            <a class="item cart bargain" >
+					                    讲价
+					</a>
+            <a class="item prodel" onclick="appointment()" href="javascript:">
+	                                                   预约看车
+					</a>
+        </div>
+    </div>
+    
+    <div class="null" style="height:1.4rem">
+        <div class="mask"></div>
+        <div class="collection_p">取消收藏</div>
+    </div>
+    <style>
+        body .layui-m-layer .layui-m-layer-footer {
+            width: 40%;
+        }
+
+        .layui-m-layer-footer .layui-m-layercont {
+            padding: 0.1875rem;
+            border-radius: 20px;
+        }
+
+        body .layui-m-layer .layui-m-layer-footer {
+            bottom: 1.875rem;
+        }
+
+        .layui-m-layercont {
+            padding: 0.625rem 0.9375rem;
+        }
+
+        .mask {
+            position: fixed;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .7);
+            pointer-events: auto;
+            z-index: 500;
+            display: none;
+        }
+
+        .collection_p {
+            position: fixed;
+            top: 17.15625rem;
+            width: 30%;
+            padding: 0.1875rem;
+            border-radius: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            color: #666;
+            text-align: center;
+            background-color: rgba(255, 255, 255, .8);
+            z-index: 600;
+            display: none;
+        }
+
+        .num_item .red_price {
+            color: #d20000;
+        }
+    </style>
+    
+    
+</body>
+
+</html>

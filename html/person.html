@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../script/need/layer.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/person" defer async="true"></script>
+	</head>
+
+	<body class="bg person">
+		<header class="header">
+			<div class="fr notice" onclick="window.location.href='information.html'">
+				<i class="num"></i>
+			</div>
+			<span>个人中心</span>
+			<i class="fl iconfont icon-shezhi" onclick="window.location.href='set_up.html'"></i>
+		</header>
+		<div class="person_info">
+			<img src="../image/persion_bg1.jpg" class="bg_img" />
+			<div class="info">
+
+			</div>
+			<div class="myqcode" onclick="javascript:location.href='myqcode.html'"></div>
+		</div>
+		<div class="my_main">
+			<div class="clearfix title" onclick="window.location.href='myorder.html?id=0'">
+
+				<div class="fl">
+					<i class="icon fl"></i>
+					<span class="fl">全部订单</span>
+				</div>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+			<div class="comment_list clearfix order_num">
+				<a href="javascript:" class="fl" onclick="window.location.href='myorder.html?id=1'">
+					<img src="../image/p1.png" />
+					<div>待付款</div>
+					<span class="num">10</span>
+				</a>
+				<a href="javascript:" class="fl" onclick="window.location.href='myorder.html?id=2'">
+					<img src="../image/p2.png" />
+					<div>待收货</div>
+					<span class="num">10</span>
+				</a>
+				<a href="javascript:" class="fl" onclick="window.location.href='myorder.html?id=3'">
+					<img src="../image/p3.png" />
+					<div>待评价</div>
+					<span class="num">10</span>
+				</a>
+
+			</div>
+		</div>
+		<div class="my_main">
+			<div class="clearfix title" onclick="window.location.href='myorder1.html?id=0'">
+
+				<div class="fl">
+					<i class="icon fl"></i>
+					<span class="fl">线下订单</span>
+				</div>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+			<div class="comment_list clearfix order_num packorder">
+				<a href="javascript:" class="fl" onclick="window.location.href='myorder1.html?id=1'">
+					<img src="../image/L0.png" />
+					<div>备货中</div>
+					<span class="num">10</span>
+				</a>
+				<a href="javascript:" class="fl" onclick="window.location.href='myorder1.html?id=2'">
+					<img src="../image/L1.png" />
+					<div>待取货</div>
+					<span class="num">10</span>
+				</a>
+				<a href="javascript:" class="fl" onclick="window.location.href='myorder1.html?id=3'">
+					<img src="../image/L2.png" />
+					<div>待结算</div>
+					<span class="num">10</span>
+				</a>
+
+			</div>
+		</div>
+		<div class="my_main ">
+			<div class="comment_list clearfix my_list ">
+				<a href="wallet.html" class="fl">
+					<img src="../image/p4.png" />
+					<div>我的钱包</div>
+				</a>
+				<a href="collection.html" class="fl">
+					<img src="../image/p5.png" />
+					<div>我的收藏</div>
+				</a>
+				<a href="my_team.html" class="fl">
+					<img src="../image/p6.png" />
+					<div>我的团队</div>
+				</a>
+				<a href="my_appointment.html" class="fl">
+					<img src="../image/p7.png" />
+					<div>我的预约</div>
+				</a>
+				<a href="extension.html" class="fl">
+					<img src="../image/p8.png" />
+					<div>我的二维码</div>
+				</a>
+				<a href="ranking_list.html" class="fl">
+					<img src="../image/p9.png" />
+					<div>排行榜</div>
+				</a>
+			</div>
+		</div>
+		<div class="product_list">
+			<div class="product_title clearfix">
+				<i class="iconfont icon-aixin"></i>
+				<span class="">猜你喜欢</span>
+			</div>
+			<ul class="list boutique">
+
+			</ul>
+			<div class="loading_more">
+				<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+				<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+			</div>
+		</div>
+
+		<footer class="foot cart_foot clearfix" id="footer">
+
+			<a class="fl home" href="home.html">
+				<i class="my-home"></i>
+				<span class="">首页</span>
+			</a>
+			<a class="fl " href="shopping.html">
+				<i class="my-shopping"></i>
+				<span class="">商城</span>
+			</a>
+			<a class="fl" href="buycar_frm.html">
+				<i class="my-sell"></i>
+				<span class="">买车</span>
+			</a>
+			<a class="fl " href="cart.html">
+				<i class="my-cart"></i>
+				<span class="">购物车</span>
+			</a>
+			<a class="fl person active" href="#">
+				<i class="my-person"></i>
+				<span class="active">我的</span>
+			</a>
+		</footer>
+
+	</body>
+
+</html>

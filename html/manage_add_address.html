@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>地址管理</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/manageadd" defer async="true"></script> 
+</head>
+
+<body class="" style="background:#eff0f4">
+	
+	<div class="container is_address">
+
+
+	</div>
+	<!-- <div class="null"></div> -->
+	<!--无收货地址-->
+	<div class="null_address" style="display:none;">
+		<img src="../image/null_address.png" />
+		<div>请告诉我你的收货地址</div>
+	</div>
+	<div class="null"></div>
+	<button class="bottom_btn" type="button" onclick="javascript:window.location.href='../html/add_address.html'">增加收货地址</button>
+	
+
+	<script>
+		apiready = function() {
+
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+
+				api.addEventListener({
+					name: 'add_address'
+				}, function(ret) {
+					if (ret) {
+
+						apiready();
+					} else {
+
+					}
+				});
+				addressList();
+
+
+			}
+			//返回上一页面并且刷新
+		function back() {
+			api.sendEvent({
+				name: 'manage_addres',
+				extra: {}
+			});
+			api.closeWin();
+		}
+		
+		
+		
+		
+	</script>
+</body>
+
+</html>

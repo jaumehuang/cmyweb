@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/user/basic.css" />
+		<link rel="stylesheet" type="text/css" href="../css/user/style.css" />
+	    <link rel="stylesheet" href="../script/need/layer.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/order_details1" defer async="true"></script>
+	</head>
+
+	<body>
+		
+		<div class="order-details">
+			<!--打包码-->
+			<div class="qcode t-center t-size-12 hidden-el">
+				<div class="qcode_bg">
+					
+					<div class="ShipmentNumber"></div>
+					<img src="" class="code-img" />
+					<div class="fash">将上方二维码展示给仓储即可取货</div>
+				</div>
+
+			</div>
+           <!-- 订单状态-->
+           <div class="order-state t-center c-white ">
+           	     <img  src="../image/order1.png" class="order-img"/>
+           	     <div class="t-size-14 Stocking-text">订单已完成</div>
+           </div>
+			<div class="title c-black t-size-12 bottom-line">商品信息</div>
+			<ul class="pr-list">
+				
+			</ul>
+			<div class="total clearfix top-line">
+				
+				<div class="fr c-red t-size-12"></div>
+			</div>
+			<ul class="info-list">
+				<dt class="title c-black t-size-14 bottom-line">订单信息</dt>
+				
+			</ul>
+			<div class="null" style="height:1.875rem "></div>
+		   <footer style="padding:0">
+				<button class="btn-very-large btn-bg-white c-black t-size-14 btn-cancel" style="border-radius: 0;">取消订单</button>
+			</footer>
+		    <!--订单操作状态-->
+		    <!--<footer style="padding:0" class="clearfix foot-btn">
+		    	    <button class="fl t-size-14 btn-bg-white c-black btn-cancel" type="button">删除订单</button>
+				<button class="t-size-14 fl btn-bg-bule" style="border-radius: 0;" type="button" onclick="javascript:location.href='classify.html'">再次购买</button>
+			</footer>-->
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>设置</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/set_person" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<div class="container set_up set_person" id="set_person">
+		<form class="input_in clearfix set_user form-img ">
+			<span class="fl">头像</span>
+			<div class="fr">
+				<img src="" class="fl user_photo" />
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+			<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+		</form>
+		<div class="input_in clearfix">
+			<span class="fl">用户名</span>
+			<span class="fr phone"></span>
+		</div>
+		<div class="input_in clearfix "  onclick="window.location.href='change_accont.html'">
+			<span class="fl">昵称</span>
+			<div class="fr">
+				<span class="fl realName"></span>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+		</div>
+		<div class="input_in clearfix">
+			<span class="fl">我的推荐码</span>
+			<div class="fr">
+				<span class="fl tuiCode"></span>
+				<!-- <i class="iconfont icon-iconfontright fr"></i> -->
+			</div>
+		</div>
+		<div class="input_in clearfix sex_item" >
+			<span class="fl">性别</span>
+			<div class="fr">
+				<span class="fl sex_txt">男</span>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+		</div>
+
+	</div>
+	<style>
+		.layui-m-layercont {
+			text-align: left;
+		}
+
+		.layui-m-layercont .sex_title {
+			font-size: 0.46875rem;
+			color: #333;
+		}
+
+		.layui-m-layercont .box,
+		.layui-m-layercont .girl {
+			margin-top: 0.375rem;
+		}
+
+		.layui-m-layercont label {
+			padding-left: 0.125rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont {
+			background: #fff;
+			padding: 0;
+		}
+
+		.photo_list {
+			background: #fff;
+		}
+
+		.photo_list li {
+			height: 1.5625rem;
+			line-height: 1.5625rem;
+			text-align: center;
+			font-size: 0.4375rem;
+			color: #333;
+			border-bottom: 0.03125rem solid #e5e5e5;
+			cursor: pointer;
+		}
+
+		.photo_list li:last-child {
+			color: #0090ff;
+		}
+	</style>
+
+</body>
+
+</html>

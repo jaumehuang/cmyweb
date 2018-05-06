@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>精确估值</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/valuation" defer async="true"></script>
+</head>
+
+<body class="valution_bg">
+	
+	<div class="container valution">
+		<img src="../image/sell_0.png" class="logo_img" />
+		<img src="../image/sell_1.png" class="sell_two" />
+		<form class="va_form ">
+
+			<div class="sh_li selectBrand"  onclick="javascript:window.location.href='car_brand.html'">
+				<input placeholder="选择车型" disabled="disabled" class="models" />
+			</div>
+
+			<div class="sh_li clearfix">
+				<select name="" class="fl year">
+						<option value="">上牌年份</option>
+					</select>
+				<select name="" class="fl month">
+						<option value="">上牌月份</option>
+					</select>
+			</div>
+			<div class="clearfix sh_li Seletecity">
+				<span name="" class="fl city">选择城市</span>
+				<div class="fl inputLi">
+					<input type="text" placeholder="里程" />
+					<span>万里</span>
+				</div>
+
+			</div>
+			<button class="btn_in" type="button" >开始估值</button>
+			<div class="va_tilte">等待几分钟，您将会收到估值结果的短信</div>
+			<div class="clearfix va_zi">
+				<img src="../image/person.png" class="fl" />
+				<div class="fl phone">
+					<div>400-0182030</div>
+					<div>
+						评估师上门<span>精确估价</span>
+					</div>
+				</div>
+				<a class="fl btn_va" href="tel:400-0182030">马上估值</a>
+			</div>
+
+		</form>
+	</div>
+	<style>
+		.layui-m-layercont {
+			padding: 0.375rem;
+		}
+	</style>
+
+	<script type="text/javascript">
+		//自定义标题风格
+
+
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+
+			var param = {
+					PageIndex: 1,
+					PageCount: 10,
+				}
+				//监听品牌系车
+			api.addEventListener({
+				name: 'choose_brand'
+			}, function(ret) {
+				if (ret && ret.value) {
+					var value = ret.value;
+					$(".selectBrand").children("input").val(value.key1);
+				}
+			});
+
+			TimeDate();
+
+		}
+
+		
+
+
+
+	
+	</script>
+
+</body>
+
+</html>

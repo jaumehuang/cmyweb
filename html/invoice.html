@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>发票</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/invoice" defer async="true"></script> 
+</head>
+
+<body style="height:100%;background:#fff">
+	
+	<form class="container invioce">
+		<div class="invioce_p">
+			<div class="title">是否开具发票</div>
+			<ul class="ul_list clearfix">
+				<li class="li_li fl ">
+					是
+				</li>
+				<li class="li_li fl active">
+					否
+				</li>
+			</ul>
+
+		</div>
+		<div class="form_list" style="display: none;">
+			<div class="list_li clearfix">
+				<span class="fl">发票抬头：</span>
+				<input class="fl name" type="text" placeholder="个人姓名或公司名称" />
+			</div>
+			<div class="list_li clearfix">
+				<span class="fl">纳税人识别号：</span>
+				<input class="fl number" type="text" />
+			</div>
+
+		</div>
+		<button class="btn_in" type="button">确定</button>
+	</form>
+	<!--<script src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>
+	<script src="../script/api.js"></script>
+	<script src="../script/commom.js"></script>
+	<script>
+		$(function() {
+
+			
+		})
+		apiready = function() {
+
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+			}
+		
+	</script>-->
+</body>
+
+</html>

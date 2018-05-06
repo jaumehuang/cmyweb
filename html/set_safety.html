@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>账户安全</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/swiper.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/set_safety" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<div class="container set_up" id="set_person">
+		<div class="input_in clearfix">
+			<span class="fl">会员名</span>
+			<span class="fr"></span>
+		</div>
+		<div class="input_in clearfix"  onclick="window.location.href='changepassword.html'">
+			<span class="fl">修改登录密码</span>
+			<div class="fr">
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+		</div>
+		<div class="input_in clearfix" onclick="window.location.href='changephone.html'">
+			<span class="fl">修改绑定手机号码</span>
+			<div class="fr">
+				<span class="fl"></span>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+		</div>
+		<div class="input_in clearfix" onclick="window.location.href='change_email.html'">
+			<span class="fl">修改邮箱</span>
+			<div class="fr">
+				<span class="fl"></span>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+		</div>
+		<div class="input_in clearfix"  onclick="window.location.href='pay_password.html'">
+			<span class="fl">设置支付密码</span>
+			<div class="fr">
+				<span class="fl"></span>
+				<i class="iconfont icon-iconfontright fr"></i>
+			</div>
+		</div>
+	</div>
+	<script>
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+			person();
+			api.addEventListener({
+				name: 'newPhone'
+			}, function(ret) {
+				if (ret && ret.value) {
+					var value = ret.value;
+					$(".set_up .input_in").eq(2).find("div.fr span.fl").text(value.key1);
+				}
+			});
+			api.addEventListener({
+				name: 'newEmail'
+			}, function(ret) {
+				if (ret && ret.value) {
+					var value = ret.value;
+					$(".set_up .input_in").eq(3).find("div.fr span.fl").text(value.key1);
+				}
+			});
+		}
+
+		
+	</script>
+
+</body>
+
+</html>

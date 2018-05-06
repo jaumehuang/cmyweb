@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>上传图片</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../script/need/layer.css" />
+		<link rel="stylesheet" href="../css/mobiscroll.custom-2.6.2.min.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/supply_upload_img" defer async="true"></script>
+	</head>
+ 
+	<body class="" style="background:#fff">
+
+		<div class="container supply">
+			<div class="my-model">
+				<div class="show_car">上传汽车图片 (外观项目)</div>
+				<ul class="car_model clearfix">
+					<li class="model_li">右前方</li>
+					<li class="model_li">侧面 (副驾驶)</li>
+					<li class="model_li">右后方</li>
+					<li class="model_li">正前方</li>
+					<li class="model_li"></li>
+					<li class="model_li">正后方</li>
+					<li class="model_li">左前方</li>
+					<li class="model_li">侧面 (驾驶)</li>
+					<li class="model_li">左后方</li>
+
+				</ul>
+			</div>
+
+			<ul class="showImg_List clearfix">
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">1.左前方45°照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">2.左前方45°照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">3.左前方车轮特写</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">4.正前方-正面照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">5.右前方45°照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">6.右侧-侧面照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">7.车尾-正面照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">8.右后方45°照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">9.后备箱特写</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+			</ul>
+			<div class="show_car show_theme">上传汽车图片 (主件项目)</div>
+			<ul class="showImg_List clearfix">
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">1.引擎全照</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">2.引擎特写</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">3.水箱特写</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl">
+					<div class="showImg_li_title">4.电动车窗</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">5.后方底盘</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">6.侧方底盘特写</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+
+			</ul>
+			<div class="show_car show_theme">上传汽车图片 (内饰项目)</div>
+			<ul class="showImg_List clearfix">
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">1.驾驶位和副驾驶位</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">2.后排乘客位</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">3.仪表整体</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">4.仪表特写突出里程</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">5.其他电子设备</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+				<li class="showImg_li fl" >
+					<div class="showImg_li_title">6.后排视野</div>
+					<form class="form-img">
+						<div class="showImg_li_img">
+							<img src="../image/banner.png" />
+							<span>点击上传图片</span>
+							<i class="icon"></i>
+						</div>
+						<input type="file" id="imgfile" name="imgfile" class="file-img"/>
+					</form>
+
+				</li>
+
+			</ul>
+			<!--<div class="null"></div>-->
+			<button type="button" class="bottom_btn">提交图片</button>
+
+		</div>
+		<style>
+
+		</style>
+		<div class="null null_info"></div>
+	</body>
+ 
+</html>

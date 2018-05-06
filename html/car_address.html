@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>车辆所在地</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/car_address" defer async="true"></script> 
+</head>
+
+<body class="bg" style="">
+	
+	<div class="container  car_address">
+		<div class="location">当前定位城市：<span></span></div>
+		<div id="letter"></div>
+		<div class="clearfix main">
+			<div class="hot_list sort_box fl ">
+				<!-- <div class="sort_list">
+						         <div class="num_name">宁夏</div>
+					        	</div>   -->
+
+			</div>
+			<ul class="fr two_list ">
+
+			</ul>
+		</div>
+
+		<div class="initials">
+			<ul>
+				<!--<li></li> -->
+			</ul>
+		</div>
+	</div>
+	<script>
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+			api.setWinAttr({
+				scrollEnabled: true
+			});
+			var equipment = $api.byId('equipment');
+			var equipmentPos = $api.offset(equipment);
+			
+			$(".location span").text($api.getStorage('city').city);
+			api.showProgress({
+				title: '',
+				text: '加载中,请稍后...',
+				modal: false
+			});
+			
+		}
+
+		
+		
+	</script>
+</body>
+
+</html>

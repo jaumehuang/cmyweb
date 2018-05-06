@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>评价</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/comment" defer async="true"></script>
+</head>
+
+<body class="bg">
+	
+	<div class="container">
+		<div class="comment_list">
+			<ul class="ul_list" id="2">
+
+			</ul>
+			<div class="loading_more">
+				<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+				<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+			</div>
+		</div>
+	</div>
+	<!--<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/jquery.raty.js"></script>
+	<script type="text/javascript" src="../script/labs.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>-->
+	<script>
+		apiready = function() {
+
+				api.setWinAttr({
+					scrollEnabled: true
+				});
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+
+
+				var guid = api.pageParam.id;
+				api.showProgress({
+					title: '',
+					text: '加载中,请稍后...',
+					modal: false
+				});
+				GetProductBaskOrder(guid, 1);
+				//底部刷新数据
+				api.addEventListener({
+					name: 'scrolltobottom',
+					extra: {
+						threshold: 0
+					}
+				}, function(ret, err) {
+
+					var page = $(".comment_list .ul_list").attr("data-page");
+					if ($(".comment_list .ul_list").attr("bool-page") == 'true') {
+						$(".loading_more").find(".loading-time").show();
+						$(".loading_more").find(".loading_fish").hide();
+						page++;
+						GetProductBaskOrder(guid, page);
+					}
+				})
+			}
+
+		//图片放大
+		function imageBrowser(arrImg) {
+			var arr = arrImg.split(",")
+			var imageBrowser = api.require('imageBrowser');
+			imageBrowser.openImages({
+				imageUrls: arr,
+
+			});
+		}
+		
+		//展示更多的评论
+		
+			//赞
+		function ClickGoods($index, Guid) {
+
+			//判断是否登录
+			if (!($api.getStorage('userData'))) {
+				open_win('login', 'comment');
+			} else {
+
+				var param = {
+					guid: Guid,
+					MemLoginId: $api.getStorage('userData').Phone,
+					isGood: $index,
+
+				}
+
+				api.ajax({
+					url: httpurl + "?action=updateproductbaskorderisgoods",
+					method: 'post',
+					dataType: "json",
+					data: {
+						values: param,
+					}
+
+				}, function(ret, err) {
+					// alert(ret.Msg);
+					if (!ret.isError) {
+
+					} else if (err) {
+						api.toast({
+							msg: '网络错误',
+							duration: 2000,
+							location: 'middle'
+						});
+					}
+				})
+			}
+		}
+	</script>
+</body>
+
+</html>

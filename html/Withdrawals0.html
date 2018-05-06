@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>提现</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/lib/layer.css" />
+	<link rel="stylesheet" href="../css/ydui.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="bg" style="height:100%;background:#fff;overflow-y: hidden;">
+	<div class="equipment"></div>
+	<header class="header">
+		<i class="iconfont icon-xiangzuo fl" onclick="api.closeWin()"></i> <span>提现</span>
+	</header>
+	<form class="container pay_set Withdrawals">
+		<ul class="user_ul">
+			<li class="item_li title clearfix">
+				<span class="title_item fl">到账位置：</span>
+				<div class="fl clearfix ">
+					<i class="iconfont icon-weixin fl"></i>
+					<span class="wei_green fl pay_mode">微信钱包</span>
+				</div>
+			</li>
+			<li class="item_li title clearfix">
+				<span class="title_item fl">提现金额：</span>
+				<div class="fl ">
+					<input placeholder="" class="num_pay" />
+				</div>
+			</li>
+			<li class="item_li title clearfix">
+				<span class="title_item fl">微信账号：</span>
+				<div class="fl apiPay">
+					<input placeholder="输入微信账号" class="pay_account" />
+				</div>
+			</li>
+			<li class="item_li title clearfix">
+				<span class="title_item fl">真实姓名：</span>
+				<div class="fl">
+					<input placeholder="输入真实姓名" class="realName" />
+				</div>
+			</li>
+
+		</ul>
+		<div class="btn_pay">
+			<button class="btn_in" type="button" id="J_OpenKeyBoard">提交</button>
+		</div>
+		<div class="m-keyboard" id="J_KeyBoard">
+			<!-- 自定义内容区域 -->
+			<div style="text-align: right;padding: .15rem .8rem 0;"><span href="set_-pay_password.html" style="color: #666;font-size: 0.34375rem;" onclick="open_win('pay_password')">忘记密码</span></div>
+			<!-- 自定义内容区域 -->
+		</div>
+	</form>
+	<script src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>
+	<script type="text/javascript" src="../script/keyboard.js"></script>
+	<script>
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+			payPassword();
+
+
+		};
+		//获取金额提现额度
+		function GetQuota() {
+
+			var param = {
+
+				MemLoginId: $api.getStorage('userData').Phone,
+			};
+			api.ajax({
+				url: httpurl + "?action=GetMemberAdvancePayment",
+				method: 'post',
+				dataType: "json",
+				timeout: 10,
+				data: {
+					values: param,
+				}
+
+			}, function(ret, err) {
+
+				if (!ret.isError) {
+
+					$(".num_pay").attr('placeholder', "可提现额度" + ret.Msg + '元');
+					$(".num_pay").attr("data-money", ret.Msg);
+				}
+			});
+
+		};
+		//验密码
+		function payPassword() {
+
+			! function($, ydui) {
+
+				var dialog = ydui.dialog;
+
+				var $keyboard = $('#J_KeyBoard');
+
+				// 初始化参数
+				$keyboard.keyBoard({
+					disorder: false, // 是否打乱数字顺序
+					title: '车漫游安全键盘' // 显示标题
+				});
+
+				// 打开键盘
+				$('#J_OpenKeyBoard').on('click', function() {
+
+					if ($(".item_li .num_pay").val() > $(".item_li .num_pay").attr("data-money")) {
+
+						layer.open({
+							content: '超过可提现额度',
+							skin: 'msg',
+							time: 2 //2秒后自动关闭
+						});
+						return false;
+					};
+					if ($(".item_li .realName").val().length == 0 || $(".item_li .num_pay").val().lenght == 0 || $(".item_li .pay_mode").text().length == 0 || $(".pay_account").val().length == 0) {
+						layer.open({
+							content: '输入框为空',
+							skin: 'msg',
+							time: 2 //2秒后自动关闭
+						});
+						return false;
+					};
+					$keyboard.keyBoard('open');
+				});
+
+				// 六位密码输入完毕后执行
+				$keyboard.on('done.ydui.keyboard', function(ret) {
+
+					console.log('输入的密码是：' + ret.password);
+					var InPayPwd = ret.password;
+
+					// 弹出请求中提示框
+					dialog.loading.open('验证支付密码');
+					//获取支付密码
+					var param = {
+
+						MemLoginId: $api.getStorage('userData').Phone,
+					}
+					api.ajax({
+						url: httpurl + "?action=GetMember",
+						method: 'post',
+						dataType: "json",
+						timeout: 10,
+						data: {
+							values: param,
+						}
+
+					}, function(ret, err) {
+
+						if (!ret.isError) {
+
+							var arryList = JSON.parse(ret.Msg);
+
+							if (arryList[0].PayPwd == '' || arryList[0].PayPwd == 'undefined' || arryList[0].PayPwd.length == 0) {
+
+								//询问框
+								layer.open({
+
+									content: '请完成支付密码的设置',
+									btn: ['确定', '取消'],
+									yes: function(index) {
+
+										open_win('pay_password');
+
+										layer.close(index);
+
+									}
+								});
+
+							} else {
+
+
+								CheckPassword(InPayPwd)
+									// dialog.loading.close();
+							}
+						}
+					})
+
+				});
+				//用户提现
+				function Withdrawals() {
+					var param = {
+						MemLoginId: $api.getStorage('userData').Phone,
+						TrueName: $(".item_li .realName").val(),
+						OperateMoney: $(".item_li .num_pay").val(),
+						PaymentName: $(".item_li .pay_mode").text(),
+						BankName: "支付宝",
+						Account: $(".pay_account").val()
+					}
+
+					api.ajax({
+						url: httpurl + "?action=MemberWithdraw",
+						method: 'post',
+						dataType: "json",
+						timeout: 10,
+						data: {
+							values: param,
+						}
+
+					}, function(ret, err) {
+
+						dialog.loading.close();
+						if (!ret.isError) {
+							layer.open({
+								content: '数据提交成功,',
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});
+							$keyboard.keyBoard('close');
+							setTimeout(function() {
+
+								api.closeWin();
+
+							}, 2000)
+						}
+					})
+
+
+				}
+
+				//验证密码
+				//用户验证密码
+				function CheckPassword(InPayPwd) {
+
+					//获取支付密码
+					var param = {
+
+						MemLoginId: $api.getStorage('userData').Phone,
+						PayPwd: InPayPwd
+					}
+					api.ajax({
+						url: httpurl + "?action=CheckPayPwd",
+						method: 'post',
+						dataType: "json",
+						timeout: 10,
+						data: {
+							values: param,
+						}
+
+					}, function(ret, err) {
+
+						dialog.loading.close();
+						if (ret.Msg == '正确') {
+
+							Withdrawals();
+
+						} else {
+
+
+							$keyboard.keyBoard('error', '输入密码有误，请重新输入。');
+						}
+
+					})
+
+				}
+
+			}(jQuery, YDUI);
+		}
+	</script>
+</body>
+
+</html>

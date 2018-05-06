@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>充值</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/rechage" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	<form class="container recharge">
+		<div class="money_list">
+			<div class="clearfix money_in" onclick="Aipay()">
+				<div class="fl">
+					充值方式<span class="money_f">微信</span>
+				</div>
+				<i class="iconfont icon-sanjiaoxing fr"></i>
+			</div>
+			<div class="clearfix money_in">
+				<div class="fl" style="width: 100%;">
+					金额&nbsp;(￥)<input class="money_f fr" placeholder="请输入充值金额,10元起" style="font-size:0.4375rem;" />
+				</div>
+			    
+			</div>
+
+		</div>
+		<div class="money_p">注：1元=<span class="recharge-num"></span>漫豆<span class="Limit"></span></div>
+		<div class="btn_ti">
+			<button class="btn_in" type='button'  data-pay="0">提交</button>
+		</div>
+
+	</form>
+	<style>
+		.layui-m-layercont {
+			padding: 0.3125rem 0.625rem;
+			text-align: left;
+		}
+
+		.layui-m-layercont .pay_title {
+			font-size: 0.46875rem;
+			color: #333;
+		}
+
+		.layui-m-layercont .pay_list .list_li {
+			font-size: 0.40625rem;
+			margin-top: 0.625rem;
+			cursor: pointer;
+		}
+
+		.layui-m-layercont .pay_list .list_li img {
+			height: 0.9375rem;
+			width: 0.9375rem;
+			/*
+		    margin-top: 0.125rem;*/
+			/*margin-right: 0.1rem;*/
+		}
+
+		.layui-m-layerbtn span {
+			padding: 0 0.325rem;
+			text-align: right;
+		}
+
+		.layui-m-layerbtn span[yes] {
+			color: #333;
+			font-size: 0.40625rem;
+		}
+       .btn_in{
+       	 
+       	   cursor: pointer;
+       }
+		
+	</style>
+	<!--<script src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>-->
+	<script>
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+		
+
+		};
+
+		function Aipay() {
+			var str = '';
+			str += '<div class="pay_title">充值方式</div>';
+			str += '<ul class="pay_list">';
+			str += '<li class="list_li"><img src="../image/weipay.png" /> <label for="weixin">微信</label></li>';
+			str += '<li class="list_li"><img src="../image/aipay.png" /><input type="radio" id="alipay" name="pay"/> <label for="alipay">支付宝</label></li>';
+			//  str+='<li class="list_li"><img src="../image/UnionPay.png" /><input type="radio" id="UnionPay" name="pay"/> <label for="alipay">银联支付</label></li>'
+			str += '</ul>';
+			layer.open({
+				content: str,
+				btn: '取消'
+			});
+			$(document).on("click", ".pay_list .list_li", function(e) {
+
+				e.stopPropagation();
+
+				$(".money_list .money_f").text($(this).find("label").text());
+
+				$(".layui-m-layer").remove();
+
+				var index = $(this).index();
+				//支付
+				$(".btn_ti .btn_in ").attr("data-pay", index);
+				return false;
+			})
+		}
+		//提交数据
+		function SibmitMoney() {
+
+			var index = $(".btn_ti .btn_in ").attr("data-pay");
+			var moneyNum = $("input").val();
+			if (moneyNum < 10) {
+
+				api.toast({
+					msg: '充值10元起',
+					duration: 2000,
+					location: 'bottom'
+				});
+				return false;
+			};
+			if (moneyNum > parseInt($(".money_in .money_f").attr("AvailableAmount"))) {
+
+				api.toast({
+					msg: '还可充值' + $(".money_in .money_f").attr("AvailableAmount"),
+					duration: 2000,
+					location: 'bottom'
+				});
+				return false;
+			};
+			// alert(moneyNum);
+			if (moneyNum.length == 0) {
+
+				api.toast({
+					msg: '请输入金额',
+					duration: 2000,
+					location: 'bottom'
+				});
+				return false;
+			}
+
+			
+		};
+		//微信支付
+		function payOrder(orderGuid) {
+			//  alert(orderGuid);
+			api.showProgress({
+				title: '',
+				text: '加载中,请稍后...',
+				modal: false
+			});
+
+			param = {
+				OrderNumber: orderGuid
+			}
+			api.ajax({
+				url: httpurl + "?action=WxPay",
+				method: 'get',
+				dataType: "json",
+				timeout: 10,
+				data: {
+					values: param,
+				}
+
+			}, function(ret, err) {
+
+				api.hideProgress();
+				if (ret) {
+
+					var param = ret.Msg;
+					var ObjList = JSON.parse(ret.Msg);
+					var wxPay = api.require('wxPay');
+					wxPay.payOrder({
+						apiKey: ObjList.appid,
+						orderId: ObjList.prepayid,
+						mchId: ObjList.partnerid,
+						nonceStr: ObjList.noncestr,
+						timeStamp: ObjList.timestamp,
+						package: ObjList.package,
+						sign: ObjList.sign
+					}, function(ret, err) {
+
+						if (ret.status) {
+							//支付成功
+							api.toast({
+								msg: '支付成功',
+								duration: 1000,
+								location: 'bottom'
+							});
+
+							api.sendEvent({
+								name: 'recharge',
+							});
+							setTimeout(function() {
+								api.closeWin();
+							}, 1000);
+
+						} else {
+							api.toast({
+								msg: '支付取消',
+								duration: 2000,
+								location: 'bottom'
+							});
+						}
+					});
+				}
+
+			})
+		};
+		//支付宝
+		function Alipay(orderGuid) {
+
+			api.showProgress({
+				title: '',
+				text: '加载中,请稍后...',
+				modal: false
+			});
+
+			param = {
+				OrderNumber: orderGuid
+			}
+			api.ajax({
+				url: httpurl + "?action=Alipaybyapp",
+				method: 'get',
+				dataType: "json",
+				timeout: 30,
+				data: {
+					values: param,
+				}
+
+			}, function(ret, err) {
+
+				api.hideProgress();
+				if (!ret.isError) {
+
+					var aliPayPlus = api.require('aliPayPlus');
+
+					aliPayPlus.payOrder({
+						orderInfo: ret.Msg,
+					}, function(ret, err) {
+
+						if (ret.status) {
+							api.toast({
+								msg: '支付成功',
+								duration: 1000,
+								location: 'bottom'
+							});
+
+							api.sendEvent({
+								name: 'recharge',
+							});
+							setTimeout(function() {
+								api.closeWin();
+							}, 1000);
+
+						} else {
+
+							api.toast({
+								msg: '支付取消',
+								duration: 2000,
+								location: 'bottom'
+							});
+						}
+					});
+				}
+			});
+
+		}
+		//银联支付
+		function UnionPay(orderGuid) {
+
+			api.showProgress({
+				title: '',
+				text: '加载中,请稍后...',
+				modal: false
+			});
+			//银联支付
+			var unPay = api.require('unionPay');
+
+			api.ajax({
+				url: httpurl + '?action=UnionPay', //从银联测试服务器上获取tn号
+				method: 'post',
+				dataType: 'json',
+				timeout: 10,
+				returnAll: false,
+				data: {
+					values: {
+						OrderNumber: orderGuid
+					} //提交商户后台生成的订单ID
+				}
+			}, function(ret, err) {
+
+				api.hideProgress();
+				if (ret) {
+					//  var Arr=JSON.parse(ret);
+					unPay.pay({
+						tn: ret.Msg,
+						devMode: true
+					}, function(ret, err) {
+
+						if (ret) {
+							api.closeToWin({
+								name: 'root'
+							});
+						} else {
+
+							api.toast({
+								msg: '支付失败',
+								duration: 2000,
+								location: 'bottom'
+							});
+						}
+
+					});
+				};
+			});
+
+		};
+	</script>
+</body>
+
+</html>

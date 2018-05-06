@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>支付页面</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/ydui.css" />
+		<link rel="stylesheet" href="../script/need/layer.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/pay" defer async="true"></script> 
+		<style>
+			  img{
+			  	display: inline-block;
+			  }
+		</style>
+	</head>
+
+	<body class="pay mypay" style="background:#fff">
+
+		<div class="container">
+			<ul class="pay_list pay_show">
+				<li class="pay_li clearfix">
+					<!--<input type="radio" id="car_pay" name="pay" class="fr" />
+					<i class="icon fr"></i>-->
+					<label for="car_pay" class="fl">
+			    		 <img src="../image/bean.png" /><span></span></label>
+				</li>
+				<!--<li class="pay_li clearfix">
+					<input type="radio" id="weixin_pay" name="pay" class="fr" />
+					<i class="icon fr"></i>
+					<label for="weixin_pay" class="fl">
+			    			<img src="../image/weipay.png" /><span>微信</span></label>
+				</li>
+				<li class="pay_li clearfix">
+					<input type="radio" id="ai_pay" name="pay" class="fr" />
+					<i class="icon fr"></i>
+					<label for="ai_pay" class="fl">
+			    			<img src="../image/aipay.png" /><span>支付宝</span></label>
+				</li>-->
+				<!-- <li class="pay_li clearfix">
+			    		<input  type="radio" id="UnionPay" name="pay" class="fr"/>
+			    		<i class="icon fr"></i>
+			    		<label for="UnionPay" class="fl">
+			    			<img src="../image/UnionPay.png" /><span>银联支付</span></label>
+			    	</li> -->
+			</ul>
+		</div>
+		<button class="bottom_btn" type="button" id="J_OpenKeyBoard">支付</button>
+		<div class="m-keyboard" id="J_KeyBoard">
+			<!-- 自定义内容区域 -->
+			<div style="text-align: right;padding: .15rem .8rem 0;">
+				<a style="color: #666;font-size: .24rem;" href="pay_password.html" >忘记密码</a>
+			</div>
+			<!-- 自定义内容区域 -->
+		</div>
+	</body>
+	
+	<script>
+//		apiready = function() {
+//
+//			var systemType = api.systemType;
+//			if(systemType == "ios") {
+//
+//				$(".equipment").css("background", '#fff');
+//			};
+//			//监听订单数量
+//			api.sendEvent({
+//				name: "order_num",
+//				extra: {
+//					key1: '1'
+//				}
+//			})
+//			api.closeWin({
+//				name: 'order1'
+//			});
+//			GetPrice(api.pageParam.id);
+//			//监听物理键返回,微信端;
+//			function listen() {
+//
+//				history = $.cookie("history");
+//
+//				function pushHistory() {
+//					var state = {
+//						title: "title",
+//						url: "#"
+//					};
+//					window.history.pushState(state, "title", "#");
+//				}
+//
+//				pushHistory();
+//				window.addEventListener("popstate", function(e) {
+//
+//					window.history.go(-2);
+//				})
+//			}
+//		};
+//		//获取订单信息
+//		function GetPrice(orderGuid) {
+//
+//			api.showProgress({
+//				title: '',
+//				text: '获取订单金额...',
+//				modal: false
+//			});
+//			var param = {
+//				MemLoginId: $api.getStorage('userData').Phone,
+//				OrderNumber: orderGuid
+//			}
+//			api.ajax({
+//				url: httpurl + "?action=GetOrderInfoDetail",
+//				method: 'get',
+//				dataType: "json",
+//				timeout: 10,
+//				data: {
+//					values: param,
+//				}
+//			}, function(ret, err) {
+//
+//				api.hideProgress();
+//				if(!ret.isError) {
+//
+//					var arryList = JSON.parse(ret.Msg);
+//					$(".pay_show .pay_li").eq(0).find("label span").text("车豆(" + arryList[0].AdvancepaymentPayPrice + ")");
+//					$("#J_OpenKeyBoard").attr("data-AdvancepaymentPayPrice", arryList[0].AdvancepaymentPayPrice);
+//					$("#J_OpenKeyBoard").attr("data-ShouldPayPrice", arryList[0].ShouldPayPrice);
+//				} else if(err) {
+//
+//					api.toast({
+//						msg: '网络不好',
+//						duration: 2000,
+//						location: 'bottom'
+//					});
+//				}
+//			})
+//		};
+//		//微信支付
+//		function payOrder(orderGuid) {
+//			//  alert(orderGuid);
+//			api.showProgress({
+//				title: '',
+//				text: '加载中,请稍后...',
+//				modal: false
+//			});
+//
+//			param = {
+//				OrderNumber: orderGuid
+//			}
+//			api.ajax({
+//				url: httpurl + "?action=WxPay",
+//				method: 'get',
+//				dataType: "json",
+//				timeout: 10,
+//				data: {
+//					values: param,
+//				}
+//
+//			}, function(ret, err) {
+//
+//				api.hideProgress();
+//				if(!ret.isError) {
+//
+//					var param = ret.Msg;
+//					var ObjList = JSON.parse(ret.Msg);
+//					var wxPay = api.require('wxPay');
+//					wxPay.payOrder({
+//						apiKey: ObjList.appid,
+//						orderId: ObjList.prepayid,
+//						mchId: ObjList.partnerid,
+//						nonceStr: ObjList.noncestr,
+//						timeStamp: ObjList.timestamp,
+//						package: ObjList.package,
+//						sign: ObjList.sign
+//					}, function(ret, err) {
+//
+//						if(ret.status) {
+//
+//							//监听订单数量
+//							api.sendEvent({
+//								name: "order_num",
+//								extra: {
+//									key1: '1'
+//								}
+//							})
+//							open_win('myorder', '2');
+//
+//						} else if(err) {
+//							api.toast({
+//								msg: '订单失效',
+//								duration: 2000,
+//								location: 'bottom'
+//							});
+//						} else {
+//
+//							api.toast({
+//								msg: '支付取消',
+//								duration: 2000,
+//								location: 'bottom'
+//							});
+//						}
+//					});
+//				} else {
+//					api.toast({
+//						msg: ret.Msg,
+//						duration: 2000,
+//						location: 'bottom'
+//					});
+//				}
+//
+//			})
+//		};
+//		//支付宝
+//		function Alipay(orderGuid) {
+//
+//			api.showProgress({
+//				title: '',
+//				text: '加载中,请稍后...',
+//				modal: false
+//			});
+//
+//			param = {
+//				OrderNumber: orderGuid
+//			}
+//			api.ajax({
+//				url: httpurl + "?action=Alipaybyapp",
+//				method: 'get',
+//				dataType: "json",
+//				timeout: 30,
+//				data: {
+//					values: param,
+//				}
+//
+//			}, function(ret, err) {
+//
+//				api.hideProgress();
+//				if(!ret.isError) {
+//
+//					var aliPayPlus = api.require('aliPayPlus');
+//
+//					aliPayPlus.payOrder({
+//						orderInfo: ret.Msg,
+//					}, function(ret, err) {
+//						if(ret.status) {
+//							//监听订单数量
+//							api.sendEvent({
+//								name: "order_num",
+//								extra: {
+//									key1: '1'
+//								}
+//							})
+//							open_win('myorder', '2');
+//						} else {
+//
+//							api.toast({
+//								msg: '支付取消',
+//								duration: 2000,
+//								location: 'bottom'
+//							});
+//						}
+//					});
+//				}
+//			});
+//
+//		}
+//		///银联支付
+//		function UnionPay(orderGuid) {
+//
+//			api.showProgress({
+//				title: '',
+//				text: '加载中,请稍后...',
+//				modal: false
+//			});
+//			//银联支付
+//			var unPay = api.require('unionPay');
+//
+//			api.ajax({
+//				url: httpurl + '?action=UnionPay', //从银联测试服务器上获取tn号
+//				method: 'post',
+//				dataType: 'json',
+//				timeout: 10,
+//				returnAll: false,
+//				data: {
+//					values: {
+//						OrderNumber: orderGuid
+//					} //提交商户后台生成的订单ID
+//				}
+//			}, function(ret, err) {
+//
+//				api.hideProgress();
+//				if(ret) {
+//
+//					unPay.pay({
+//						tn: ret.Msg,
+//						devMode: true
+//					}, function(ret, err) {
+//
+//						if(ret) {
+//							// api.closeToWin({
+//							// 		name: 'root'
+//							// 	});
+//							open_win('myorder', '2');
+//						} else {
+//
+//							api.toast({
+//								msg: '支付失败',
+//								duration: 2000,
+//								location: 'bottom'
+//							});
+//						}
+//
+//					});
+//				};
+//			});
+//
+//		}
+//		$(document).on("click", ".pay_list .pay_li", function(e) {
+//
+//			e.stopPropagation();
+//			var $index = $(this).index();
+//			if($index == 0) {
+//
+//				$("#J_OpenKeyBoard").text("支付(" + $("#J_OpenKeyBoard").attr("data-AdvancepaymentPayPrice") + ")车豆");
+//				$(".bottom_btn").attr("pay-type", "0");
+//			} else if($index == 1) {
+//				$("#J_OpenKeyBoard").text("支付(￥" + $("#J_OpenKeyBoard").attr("data-ShouldPayPrice") + ")");
+//				$(".bottom_btn").attr("pay-type", "1");
+//			} else if($index == 2) {
+//
+//				$("#J_OpenKeyBoard").text("支付(￥" + $("#J_OpenKeyBoard").attr("data-ShouldPayPrice") + ")");
+//				$(".bottom_btn").attr("pay-type", "2");
+//
+//			} else if($index == 3) {
+//
+//				$("#J_OpenKeyBoard").text("支付(￥" + $("#J_OpenKeyBoard").attr("data-ShouldPayPrice") + ")");
+//				$(".bottom_btn").attr("pay-type", "3");
+//
+//			};
+//		})
+//		payKeyboard();
+//		//车豆支付
+//		function payKeyboard() {
+//
+//			! function($, ydui) {
+//
+//				var dialog = ydui.dialog;
+//
+//				var $keyboard = $('#J_KeyBoard');
+//				// 初始化参数
+//				$keyboard.keyBoard({
+//					disorder: false, // 是否打乱数字顺序
+//					title: '车漫游安全键盘' // 显示标题
+//				});
+//
+//				// 打开键盘
+//				$('#J_OpenKeyBoard').on('click', function() {
+//
+//					//判断是否选择支付方式
+//
+//					var fage = false;
+//
+//					$(".pay_list .pay_li").each(function(index, ele) {
+//
+//						if($(this).find("input").is(":checked")) {
+//
+//							fage = true;
+//						}
+//
+//					});
+//					if(!fage) {
+//
+//						layer.open({
+//							content: '请选择支付方式',
+//							skin: 'msg',
+//							time: 2 //2秒后自动关闭
+//						});
+//						return false;
+//					};
+//
+//					api.showProgress({
+//						title: '',
+//						text: '获取支付信息...',
+//						modal: false
+//					});
+//					var type = $('#J_OpenKeyBoard').attr("pay-type");
+//					if(type == 0) {
+//						//获取个人信息
+//						var param = {
+//							MemLoginId: $api.getStorage('userData').Phone
+//						}
+//						//  alert(param.MemLoginId);
+//						api.ajax({
+//							url: httpurl + "?action=GetMember",
+//							method: 'get',
+//							dataType: "json",
+//							data: {
+//								values: param,
+//							}
+//
+//						}, function(ret, err) {
+//							api.hideProgress();
+//							if(!ret.isError) {
+//
+//								var arryList = JSON.parse(ret.Msg);
+//
+//								if(arryList[0].PayPwd == '' || arryList[0].PayPwd == 'undefined' || arryList[0].PayPwd.length == 0) {
+//
+//									//询问框
+//									layer.open({
+//										content: '请完成支付密码的设置',
+//										btn: ['确定', '取消'],
+//										yes: function(index) {
+//
+//											open_win('pay_password');
+//
+//											layer.close(index);
+//
+//										}
+//									});
+//								} else {
+//
+//									$keyboard.keyBoard('open');
+//
+//									// 六位密码输入完毕后执行
+//									$keyboard.on('done.ydui.keyboard', function(ret) {
+//
+//										var InPayPwd = ret.password;
+//										// 弹出请求中提示框
+//										dialog.loading.open('验证支付密码');
+//										//获取支付密码
+//										var param = {
+//
+//											MemLoginId: $api.getStorage('userData').Phone,
+//											OrderNumber: api.pageParam.id,
+//											PayPwd: InPayPwd
+//										}
+//										api.ajax({
+//											url: httpurl + "?action=PayAdvancepayment",
+//											method: 'post',
+//											dataType: "json",
+//											data: {
+//												values: param,
+//											}
+//
+//										}, function(ret, err) {
+//
+//											dialog.loading.close();
+//
+//											if(!ret.isError) {
+//												$keyboard.keyBoard('close');
+//												//监听订单数量
+//												api.sendEvent({
+//													name: "order_num",
+//													extra: {
+//														key1: '1'
+//													}
+//												})
+//												layer.open({
+//													content: '支付成功',
+//													skin: 'msg',
+//													time: 2 //2秒后自动关闭
+//												});
+//
+//												var time = setTimeout(function() {
+//
+//													//  open_win("myorder");
+//													clearTimeout(time);
+//													open_win('myorder', '2');
+//
+//												}, 1000);
+//
+//											} else if(err) {
+//
+//												$keyboard.keyBoard('error', '请重新输入密码！');
+//
+//											} else {
+//
+//												layer.open({
+//													content: ret.Msg,
+//													skin: 'msg',
+//													time: 2 //2秒后自动关闭
+//												});
+//											};
+//
+//										})
+//
+//										// 关闭键盘
+//
+//									});
+//
+//								}
+//							}
+//						})
+//
+//					} else if(type == 1) {
+//
+//						api.hideProgress();
+//						//微信支付
+//						payOrder(api.pageParam.id);
+//					} else if(type == 2) {
+//						//支付宝支付
+//						api.hideProgress();
+//						Alipay(api.pageParam.id);
+//
+//					} else if(type == 3) {
+//
+//						UnionPay(api.pageParam.id);
+//					}
+//
+//				});
+//
+//			}(jQuery, YDUI);
+//
+//		};
+	</script>
+
+</html>

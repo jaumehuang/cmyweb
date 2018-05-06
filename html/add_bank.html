@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>我的银行卡</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/add_bank" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<form class="container add_bank">
+		<div class="title_p">请绑定持卡人本人的银行卡</div>
+		<div class="form_list">
+			<div class="form_li">
+				<label>持卡人</label>
+				<input class="myName" type="text" placeholder="持卡人姓名" />
+			</div>
+			<div class="form_li">
+				<label>卡号</label>
+				<input class="bankAccount" type="text" value="" size="25"  name="account" id="account" placeholder="卡号" />
+
+			</div>
+			<div class="form_li">
+				<label>银行</label>
+				<input class="bankName" type="text" placeholder="银行名称" />
+			</div>
+
+		</div>
+		<div class="btn_bank">
+			<button class="btn_in" type="button">确定</button>
+		</div>
+
+	</form>
+
+	
+</body>
+
+</html>

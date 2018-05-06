@@ -1,0 +1,585 @@
+@charset "UTF-8";
+
+/*          作者：1332204564@qq.com/jaume.huang
+            时间：2017-01-18
+            描述:汽车技师样式
+ */
+
+
+/*公共样式--开始*/
+
+
+/*去除默认样式开始*/
+
+html,
+body,
+div,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dt,
+dd,
+ol,
+form,
+input,
+textarea,
+th,
+td,
+select {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	min-height: 100%;
+	overflow-x: hidden;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	font-family: "Microsoft YaHei";
+	font-size: 14px;
+	color: #333;
+	background: #eff0f4;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link,
+a:active,
+a:visited,
+a:hover {
+	/* background: none;*/
+	-webkit-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+}
+
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+input,
+textarea {
+	outline: none;
+	border: none;
+}
+
+input {
+	background: #fff;
+}
+button{
+	outline: none;
+}
+textarea {
+	resize: none;
+	overflow: auto;
+}
+
+.inline {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+i {
+	font-size: 0.53125rem;
+}
+
+
+/*去掉按钮颜色*/
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	cursor: pointer;
+	border: none;
+	color: #fff;
+	-webkit-appearance: button;
+	tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+}
+
+
+/*去除默认样式结束*/
+
+
+/*公共样式开始*/
+
+* {
+	font-family: PingFangSC-Regular, sans-serif;
+}
+
+
+/*浮动*/
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+
+/*文字位置*/
+
+.t-left {
+	text-align: left;
+}
+
+.t-center {
+	text-align: center;
+}
+
+.t-right {
+	text-align: right;
+}
+
+
+/*文字颜色*/
+
+.c-white {
+	color: #fff;
+}
+
+.c-red {
+	color: #cc0001;
+}
+
+.c-blue {
+	color: #06a0f8;
+}
+
+.c-gray {
+	color: #c9c9c9;
+}
+
+.c-black {
+	color: #333;
+}
+
+.c-orange {
+	color: #ff6634;
+}
+
+.c-yellow {
+	color: #ffd566;
+}
+
+.c-yellow {
+	color: #ffd566;
+}
+
+
+/*文字大小*/
+
+.t-size-12 {
+	font-size: 0.375rem;
+}
+
+.t-size-16 {
+	font-size: 0.5rem;
+}
+
+.t-size-14 {
+	font-size: 0.4375rem;
+}
+
+.t-size-18 {
+	font-size: 0.5625rem;
+}
+
+.t-size-24 {
+	font-size: 0.75rem;
+}
+
+
+/*清除浮动*/
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	content: ".";
+	width: 0;
+	height: 0;
+	visibility: hidden;
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+
+/*省略一行文字*/
+
+.ellipse {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/*省略二行文字*/
+
+.ellipse_two {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+
+/*省略n行文字*/
+
+.ellipse_three {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+
+
+/*省略n行文字*/
+
+.ellipse_four {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow: hidden;
+}
+
+
+/*隐藏元素*/
+
+.hidden-el {
+	display: none;
+}
+
+
+/*主内容*/
+
+.container {
+	margin-top: 1.25rem;
+}
+
+
+/*模块定位*/
+
+.block-fixed-c {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.block-fixed-l {
+	position: fixed;
+	left: 0;
+	top: 50%;
+	-webkit-transform: translate(0%, -50%);
+	transform: translate(0%, -50%);
+}
+
+.block-fixed-r {
+	position: fixed;
+	right: 0;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.block-absolute-c {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.block-absolute-l {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	-webkit-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+}
+
+.block-absolute-r {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+
+/*块元素转化内联元素*/
+
+.block-inline {
+	display: inline-block;
+}
+
+
+/*下划线*/
+
+.bottom-line {
+	border-bottom: 1px solid #e3e3e3;
+}
+
+.top-line {
+	border-top: 1px solid #e3e3e3;
+}
+
+
+/*小按钮*/
+
+.btn-small {
+	width: 2.15625rem;
+	height: 0.9375rem;
+	border-radius: 4px;
+}
+
+
+/*中型按钮*/
+
+.btn-middle {
+	border-radius: 4px;
+	width: 2.34375rem;
+	height: 0.78125rem;
+}
+
+
+/*大按钮*/
+
+.btn-large {
+	width: 90%;
+	display: block;
+	margin: 0 auto;
+	height: 1.1875rem;
+	line-height: 1.1875rem;
+	border-radius: 4px;
+}
+
+.btn-very-large {
+	width: 100%;
+	display: block;
+	height: 1.1875rem;
+	line-height: 1.1875rem;
+	border-radius: 4px;
+}
+
+
+/*背景*/
+
+.btn-bg-o {
+	background-color: #ff6634;
+}
+
+.btn-bg-gary {
+	background: #e5e5e5;
+}
+
+.btn-bg-red {
+	background: #f03232;
+}
+
+.btn-bg-white {
+	background: #fff;
+}
+
+.btn-bg-bule {
+	background: #019df2;
+}
+
+
+/*输入框*/
+
+.input-in {
+	padding: 0.3125rem 0;
+}
+
+
+/*头部*/
+
+header {
+	height: 1.375rem;
+	background: #fff;
+	padding: 0 0.375rem;
+	text-align: center;
+	line-height: 1.375rem;
+}
+
+header i {
+	line-height: 1.375rem;
+}
+
+
+/*遮罩层*/
+
+.mask {
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	opacity: 0.5;
+}
+
+
+/*尾部*/
+
+footer {
+	background: #fff;
+	position: fixed;
+	z-index: 100;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	padding: 0.21875rem 0;
+	border-top: 0.03125rem solid #e5e5e5;
+	z-index: 1100;
+}
+
+footer .item_li {
+	width: 25%;
+	text-align: center;
+	font-size: 0.34375rem;
+	color: #666666;
+}
+
+footer .item_li .show_icon {
+	height: 0.75rem;
+	width: 0.65625rem;
+	margin: 0 auto;
+}
+
+footer .item_li .home_icon {
+	background: url(../image/home0.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .item_li .technician-icon {
+	background: url(../image/technicain0.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .item_li .order-icon {
+	background: url(../image/order0.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .item_li .person_icon {
+	background: url(../image/person0.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .active {
+	color: #ff6634;
+}
+
+footer .active .home_icon {
+	background: url(../image/home1.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .active .technician-icon {
+	background: url(../image/single1.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .active .order-icon {
+	background: url(../image/ask1.png) no-repeat center;
+	background-size: contain;
+}
+
+footer .active .person_icon {
+	background: url(../image/person1.png) no-repeat center;
+	background-size: contain;
+}
+
+
+/*数据加载*/
+
+@-webkit-keyframes rotation {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+.loadTime img {
+	-webkit-transform: rotate(360deg);
+	animation: rotation 1.5s linear infinite;
+	-moz-animation: rotation 1.5s linear infinite;
+	-webkit-animation: rotation 1.5s linear infinite;
+	-o-animation: rotation 1.5s linear infinite;
+}
+
+.loadTime {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 120px;
+	height: 96px;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.7);
+	border-radius: 4px;
+	z-index: 9999999999999999;
+}
+
+.loadTime img {
+	height: 50px;
+	width: 50px;
+	margin-top: 6px;
+}
+
+.loadTime .text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #fff;
+	font-size: 16px;
+	margin-top: 10px;
+}

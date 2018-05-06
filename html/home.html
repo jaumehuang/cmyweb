@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/swiper.css" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../script/need/layer.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script src="../script/lib/require.js" data-main="../script/js/home" defer async="true"></script>
+	</head>
+
+	<body class="bg home" style="height:100%">
+		<!--轮播-->
+		<!--轮播图开始-->
+		<!--轮播图结束-->
+		<div class="search clearfix">
+			<div class="fl location" data-code="" onclick="javascript:location.href='city_list.html'">
+				<span class="fl ellipse" style="width:70%"></span>
+				<i class="iconfont fl"></i>
+			</div>
+			<div class="search_content fl" onclick="javascript:window.location.href='search1.html'" style="width:76.75%">
+				<i class="iconfont icon-sousuo"></i>
+				<input type="text" placeholder="搜索你想要的车" />
+			</div>
+			<!--<div class="qrcode fl" onclick="open_win('scanning')">
+				<i class="iconfont codeImg  fl"></i>
+				<span class="fl">扫码</span>
+			</div>-->
+		</div>
+		<div class="car_title">
+			<div class="title_li1 clearfix">
+				<a class="fl">二手车</a>
+				<a class="fl" href="#">准新车</a>
+				<a class="fl" href="#">全新车</a>
+			</div>
+			<div class="title_li2 clearfix">
+				<a class="fl" href="#">10万以下</a>
+				<a class="fl" href="#">10-20万</a>
+				<a class="fl" href="#">20-30万</a>
+				<a class="fl" href="#">30万以上</a>
+			</div>
+			<div class="title_li3 clearfix">
+
+			</div>
+			<a class="large_btn" href="buycar_frm.html" style="display: block;">查看全部优质车源</a>
+		</div>
+		<div class="information clearfix">
+			<a class="fl" href="news.html">
+				<img src="../image/t_0.png" />
+				<span>最新资讯</span>
+			</a>
+			<a class="fl sellcar">
+				<img src="../image/t_1.png" />
+				<span>我要卖车</span>
+			</a>
+			<a class="fl trader">
+				<img src="../image/t_2.png" />
+				<span>成为渠道商</span>
+			</a>
+			<a class="fl recommend">
+				<img src="../image/t_3.png" />
+				<span>推荐好友</span>
+			</a>
+		</div>
+		<div class="product_list">
+			<div class="product_title clearfix" onclick="javascript:location.href='car_list.html?id=0' ">
+				<div class="fl">
+					优惠车
+				</div>
+				<a class="fr" href="javascript:">
+					<span>更多</span>
+					<i class="iconfont icon-iconfontright"></i>
+				</a>
+			</div>
+			<ul class="list hot">
+
+			</ul>
+		</div>
+		<div class="product_list">
+			<div class="product_title clearfix" onclick="javascript:location.href='car_list.html?id=1'">
+				<div class="fl">
+					精选车
+				</div>
+				<a class="fr" href="javascript:">
+					<span>更多</span>
+					<i class="iconfont icon-iconfontright"></i>
+				</a>
+			</div>
+			<ul class="list boutique">
+
+			</ul>
+		</div>
+		<div class="product_list">
+			<div class="product_title clearfix">
+				<div class="fl">
+					所有车型
+				</div>
+				<a class="fr" href="javascript:">
+
+				</a>
+			</div>
+			<ul class="list all_car">
+
+			</ul>
+			<div class="loading_more">
+				<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+				<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+			</div>
+		</div>
+
+		<!--返回顶部按钮-->
+		<div class="float_btn">
+			<img src="../image/fly_top.png" />
+		</div>
+		<div class="null"></div>
+		<footer class="foot cart_foot clearfix" id="footer">
+			<a class="fl active">
+				<i class="my-home"></i>
+				<span class="active">首页</span>
+			</a>
+			<a class="fl" href="shopping.html">
+				<i class="my-shopping"></i>
+				<span class="">商城</span>
+			</a>
+			<a class="fl " href="buycar_frm.html">
+				<i class="my-sell"></i>
+				<span class="">买车</span>
+			</a>
+			<a class="fl cart " href="#">
+				<i class="my-cart"></i>
+				<span class="">购物车</span>
+			</a>
+			<a class="fl person" href="#">
+				<i class="my-person"></i>
+				<span class="">我的</span>
+			</a>
+		</footer>
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=zdoE3kQumGHqLrY4dnAIFfkL&amp;services=&amp;t=20170728132058"></script>
+	</body>
+
+</html>

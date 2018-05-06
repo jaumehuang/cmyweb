@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>品牌车系</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="filter_bg">
+	<header class="header">
+		<div class="equipment"></div>
+		<i class="iconfont icon-xiangzuo fl"></i>
+		<span class="fl">品牌车系</span>
+
+	</header>
+	<div class="container">
+
+	</div>
+
+	<script src="../script/jquery-3.2.1.min.js"></script>
+	<script src="../script/api.js"></script>
+	<script src="../script/commom.js"></script>
+	<script>
+		apiready = function() {
+			var UIListView = api.require('UIListView');
+			UIListView.open({
+				rect: {
+					x: 0,
+					y: 0,
+					w: api.winWidth,
+					h: api.frameHeight
+				},
+				data: [{
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					uid: '1001',
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, {
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, , {
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, , {
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}, , {
+					imgPath: 'widget://res/img/apicloud.png',
+					title: '标题',
+					subTitle: '子标题，说明文字',
+					remark: '备注',
+					icon: ''
+				}],
+				rightBtns: [{
+					bgColor: '#388e8e',
+					activeBgColor: '',
+					width: 70,
+					title: '按钮',
+					titleSize: 12,
+					titleColor: '#fff',
+					icon: '',
+					iconWidth: 20
+				}],
+				styles: {
+					borderColor: '#696969',
+					item: {
+						bgColor: '#AFEEEE',
+						activeBgColor: '#F5F5F5',
+						height: 55.0,
+						imgWidth: 40,
+						imgHeight: 40,
+						imgCorner: 4,
+						placeholderImg: '',
+						titleSize: 12.0,
+						titleColor: '#000',
+						subTitleSize: 12.0,
+						subTitleColor: '#000',
+						remarkColor: '#000',
+						remarkSize: 16,
+						remarkIconWidth: 30
+					}
+				},
+				fixedOn: api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					alert(JSON.stringify(ret));
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+
+			UIListView.setRefreshFooter({
+				loadingImg: 'widget://res/UIListView_arrow.png',
+				bgColor: '#F5F5F5',
+				textColor: '#8E8E8E',
+				textUp: '上拉加载更多...',
+				textDown: '松开开始加载...',
+				showTime: true
+			}, function(ret, err) {
+				if (ret) {
+
+					UIListView.appendData({
+						data: [{
+							imgPath: 'http://d.hiphotos.baidu.com/image/pic/item/4d086e061d950a7b29a788c209d162d9f2d3c922.jpg',
+							title: '新增标题',
+							subTitle: '新增子标题',
+							remark: '新增备注'
+						}]
+					}, function(ret, err) {
+						if (ret) {
+
+						} else {
+
+						}
+					});
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

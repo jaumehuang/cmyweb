@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+<div class="equipment"></div>
+
+<body class="login_bg">
+	<header class="header">
+		<i class="iconfont icon-xiangzuo fl" onclick="api.closeWin()"></i>
+		<span>登录</span>
+	</header>
+	<div class="container login ">
+		<form>
+			<div class="login_title">车漫游账号登录</div>
+			<div class="input_text">
+				<input type="text" placeholder="请输入手机号" class="phone" />
+				<input type="password" placeholder="请输入密码" class="password" />
+				<span class="code_p">获取验证码</span>
+			</div>
+			<button class="btn_in" type="button">
+					登&nbsp;录
+				</button>
+			<div class="third_party">
+				<div class="line_title">
+					<i class=" line"></i>
+					<span>第三方登录</span>
+					<i class="line"></i>
+				</div>
+				<div class="show_three">
+
+				</div>
+
+			</div>
+		</form>
+		<footer class="foot clearfix">
+			<a class="fl" href="#" onclick="open_win('changepassword')">忘记密码</a>
+			<a class="fl" href="#" onclick="open_win('register')">注册</a>
+		</footer>
+	</div>
+	<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+
+	<script>
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+
+			var guid = api.pageParam.id;
+			if (guid) {
+				login(guid);
+			} else {
+				login('person');
+			}
+
+			GetLoginType();
+
+		}
+
+		//获取登录类型
+		function GetLoginType() {
+			api.showProgress({
+				style: 'default',
+				animationType: 'fade',
+				title: '',
+				text: '加载数据，请稍后...',
+				modal: true
+			});
+			api.ajax({
+				url: httpurl + "?action=GetSecondList",
+				method: 'get',
+				dataType: "json",
+				timeout: 10
+
+			}, function(ret, err) {
+				api.hideProgress();
+				// alert(ret.Msg);
+				if (!ret.isError) {
+					var arryList = JSON.parse(ret.Msg);
+					var str = '';
+					for (var i = 0; i < arryList.length; i++) {
+
+						str += '<img src="' + arryList[i].ImgSrc + '" onclick="intBind(\'' + arryList[i].AppID + '\',\'' + arryList[i].Type + '\')" data-type="' + arryList[i].Type + '"/>';
+
+					}
+					$(".show_three").append(str);
+					//  alert(str)
+				}
+			})
+		}
+
+		function intBind(AppID, Type) {
+
+			if (Type == 1) {
+
+				var qq = api.require('qq');
+				qq.installed(function(ret, err) {
+					//判断是否安装QQ
+					if (ret.status) {
+
+						//登录
+						qq.login({
+							apiKey: AppID
+						}, function(ret, err) {
+
+							if (ret.status) {
+								api.toast({
+									msg: '授权成功',
+									duration: 2000,
+									location: 'bottom'
+								});
+								//获取openId
+								var openId = ret.openId;
+								var param = {
+										SecondId: openId,
+										SecondType: Type
+									}
+									//判断是否是否授权过
+								api.ajax({
+										url: httpurl + "?action=CheckSecondId",
+										method: 'post',
+										dataType: "json",
+										data: {
+											values: param,
+										}
+
+									}, function(ret, err) {
+
+										api.hideProgress();
+										if (!ret.isError) {
+											var list = JSON.parse(ret.Msg);
+
+											var param2 = {
+													Phone: list[0].MemlogID,
+												}
+												//本地保存数据
+											$api.setStorage('userData', param2);
+											open_win('person');
+										} else if (err) {
+											getUserInfo();
+										}
+									})
+									//获取用户信息
+								function getUserInfo() {
+									//获取用户信息
+									api.showProgress({
+										style: 'default',
+										animationType: 'fade',
+										title: '',
+										text: '获取数据，请稍后...',
+										modal: true
+									});
+									qq.getUserInfo(function(ret, err) {
+
+										if (ret.status) {
+											api.hideProgress();
+											var info = ret.info;
+											info.openId = openId;
+											info.Type = Type;
+											var str = JSON.stringify(info);
+											//  open_win('third_login',str);
+
+
+
+										} else {
+											api.alert({
+												msg: err.msg
+											});
+										}
+									});
+								}
+
+							}
+						});
+
+					} else {
+						api.alert({
+							msg: "没有安装QQ"
+						});
+					}
+
+				});
+			}
+		}
+
+		function login(guid) {
+
+			$(".btn_in").on("click", function() {
+				//验证
+				var $phone = $(".phone").val();
+				var $password = $(".password").val();
+				var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+				var param = {
+						Phone: $phone,
+						Pwd: $password
+					}
+					// alert(JSON.stringify(param));
+				if (($phone.length == 0) || ($password.length == 0)) {
+
+					layer.open({
+						content: '手机号或密码为空',
+						btn: '确定'
+					});
+				} else if (!reg.test($phone)) {
+					layer.open({
+						content: '手机号格式错误',
+						btn: '确定'
+					});
+				} else if (!(/^.{6,20}$/).test($password)) {
+					layer.open({
+						content: '6~20位密码',
+						btn: '确定'
+					});
+				} else {
+
+					api.showProgress({
+						title: '',
+						text: '加载中,请稍后...',
+						modal: false
+					});
+					api.ajax({
+						url: httpurl + "?action=memberlogin",
+						method: 'post',
+						dataType: "json",
+						data: {
+							values: param,
+						}
+
+					}, function(ret, err) {
+						// alert(ret.Msg)
+						api.hideProgress();
+						if (!ret.isError) {
+							var list = JSON.parse(ret.Msg);
+							var param2 = {
+									Phone: list.MemLoginId,
+									Pwd: $password
+								}
+								//本地保存数据
+							$api.setStorage('userData', param2);
+							//推送登录广播
+							// api.sendEvent({
+							//   name: 'isLogin',
+							//   extra: {isLogin:true}
+							// });
+							api.openWin({
+								name: guid,
+								url: guid + '.html',
+								pageParam: {}
+							});
+
+						} else if (err) {
+							api.toast({
+								msg: '请检查网络状态',
+								duration: 2000,
+								location: 'middle'
+							});
+						} else {
+							alert(ret.Msg);
+						}
+
+					})
+
+
+
+				}
+
+			})
+
+		}
+	</script>
+</body>
+
+</html>

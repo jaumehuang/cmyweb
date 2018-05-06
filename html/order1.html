@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>确认订单</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/order1" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<form class="container order">
+
+		<div class="addrees">
+
+		</div>
+		<ul class="product_list">
+
+		</ul>
+		<div class="order_list">
+
+			<div class="list_li clearfix shipping_tt"  onclick="window.location.href='shipping.html'">
+				<span class="fl">配送方式</span>
+				<a href="#" class="fr shipping_p">
+					<span></span>
+					<i class="iconfont icon-iconfontright"></i>
+				</a>
+			</div>
+			<div class="list_li clearfix myinvoice" onclick="window.location.href='invoice.html'">
+				<span class="fl">发票</span>
+				<a href="#" class="fr">
+					<span>否</span>
+					<i class="iconfont icon-iconfontright"></i>
+				</a>
+
+			</div>
+		</div>
+		<div class="order_list order_price">
+			<div class="list_li clearfix" >
+				<span class="fl">商品金额</span>
+				<a href="#" class="fr">
+
+				</a>
+			</div>
+			<div class="list_li clearfix">
+				<span class="fl">账户余额抵扣</span>
+				<a href="#" class="fr">
+
+				</a>
+			</div>
+			<div class="list_li clearfix">
+				<span class="fl">运费</span>
+				<a href="#" class="fr">
+
+				</a>
+			</div>
+
+		</div>
+		<div class="null"></div>
+		<footer class="foot clearfix foot_cart order_foot">
+			<div class="fl total_price">
+				合计：<span><sapn class="all_num">0</span>漫豆</span>
+			</div>
+			<a class="fr pay_btn" href="javascript:" >
+				         去支付
+				</a>
+		</footer>
+	</form>
+	<style>
+		.layui-m-layercont {
+			padding: 0.6875rem 0.625rem;
+			text-align: left;
+			font-size: 0.40625rem;
+			line-height: 0.6875rem;
+		}
+
+		.layui-m-layercont .title {
+			font-size: 0.46875rem;
+			color: #333;
+			font-weight: 600;
+		}
+
+		.layui-m-layercont .mode>div {
+			margin-top: 0.3125rem;
+		}
+
+		.layui-m-layercont .mode .balance {
+			padding-left: 0.25rem;
+			font-size: 0.34375rem;
+			color: #8c8c8c;
+		}
+	</style>
+
+</body>
+
+</html>

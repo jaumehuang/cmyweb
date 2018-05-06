@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>二维码</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<style>
+		.scanning {
+			height: 205px;
+			width: 205px;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			z-index: 1000;
+		}
+
+		.scanning img {
+			height: 100%;
+			width: 100%;
+		}
+
+		.scanning .line {
+			position: absolute;
+			top: 0;
+			left: 2px;
+			display: block;
+			width: 200px;
+			height: 11px;
+			background: url(../image/line_scanning.png) no-repeat center;
+			background-size: contain;
+			margin: 0 auto;
+			z-index: 100;
+		}
+
+		.header img:first-child {
+			margin-left: 0.3125rem;
+		}
+
+		.header img {
+			width: 1.25rem;
+			height: 0.75rem;
+			margin-right: 0.9rem;
+		}
+	</style>
+</head>
+
+<body class="" style="background:#9a9999">
+	<div class="equipment"></div>
+	<header class="header" style="background:#9a9999;border:none">
+		<i class="iconfont icon-xiangzuo fl" style="color:#fff" onclick="api.closeWin()"></i>
+		<!-- <span class="fl">车辆所在地</span> -->
+		<img src="../image/scaning_p.png" />
+		<img src="../image/light.png" onclick="opneLight()" />
+		<img src="../image/photos.png" onclick="openPhoto()" />
+	</header>
+	<div class="container">
+
+	</div>
+
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script src="../script/jquery-3.2.1.min.js"></script>
+	<script src="../script/commom.js"></script>
+	<script>
+		apiready = function() {
+
+				openView();
+
+				var FNScanner = api.require('FNScanner');
+				//防止照相机返回变黑
+				api.addEventListener({
+					name: 'resume'
+				}, function(ret, err) {
+					FNScanner.onResume();
+
+				});
+				//防止照相机返回变黑屏
+				api.addEventListener({
+					name: 'pause'
+				}, function(ret, err) {
+					FNScanner.onPause();
+
+				});
+
+			}
+			//打开扫描线
+		function openscanline(w, h) {
+			api.openFrame({
+				name: 'line',
+				url: 'line.html',
+				rect: {
+					x: w,
+					y: h,
+					w: 200,
+					h: 200
+				},
+			});
+		};
+		/*打开扫描*/
+		function openView() {
+
+			var frameWidth = api.frameWidth;
+			var frameHeight = api.frameHeight;
+			var FNScanner = api.require('FNScanner');
+			FNScanner.openView({
+				rect: {
+					x: (frameWidth / 2) - 100,
+					y: (frameHeight / 2) - 100,
+					w: 200,
+					h: 200,
+				},
+				autorotation: false
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.eventType == "show") {
+						openscanline((frameWidth / 2) - 100, (frameHeight / 2) - 100);
+					};
+					if (ret.eventType == "success") {
+
+
+						var pathUrl = ret.content;
+						if (pathUrl != 'undefined' && pathUrl.indexOf("LeadProduct") > -1 || pathUrl.indexOf("logincode") > -1) {
+							/*关掉二位扫描器,及闪光灯*/
+							FNScanner.switchLight({
+								status: 'off'
+							});
+							FNScanner.closeView();
+
+							var ProductGuid1 = (pathUrl).split("=");
+							var ProductGuid2 = ProductGuid1[1].split("&");
+							//记录二维码扫描次数
+
+							$api.setStorage('scaninng', 'true');
+
+
+							if (pathUrl.indexOf("LeadProduct1") > -1) {
+
+								open_win("details2", ProductGuid2[0]);
+								// api.closeWin();
+
+							} else if (pathUrl.indexOf("LeadProduct") > -1) {
+
+								open_win("details1", ProductGuid2[0]);
+								//  api.closeWin();
+							} else if (pathUrl.indexOf("logincode") > -1) {
+
+								var IdStr = pathUrl.split('|')[1];
+								open_win("pclogin", IdStr);
+
+							}
+
+						} else {
+
+							alert('不可以扫描车漫游官方提供之外的二维码')
+							window.location.reload();
+
+						};
+
+						return false;
+
+					}
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+
+		}
+		/*打开散光灯*/
+		function opneLight() {
+
+			var FNScanner = api.require('FNScanner');
+			FNScanner.switchLight({
+				status: 'on'
+			});
+		};
+		/*打开相册*/
+		function openPhoto() {
+
+			var FNScanner = api.require('FNScanner');
+			FNScanner.decodeImg({
+
+			}, function(ret, err) {
+
+				if (ret.status) {
+
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>

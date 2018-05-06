@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>补充信息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/mobiscroll.custom-2.6.2.min.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/supply_info" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<form class="container supply" >
+		<img src="../image/trader.jpg" />
+		<div class="input_li clearfix carTitle">
+			<span class="fl">汽车标题</span>
+			<div class="fr">
+				<input class="my_carTitle_info" type="text" placeholder="汽车简短介绍" />
+				<!-- <i class="iconfont icon-iconfontright"></i> -->
+			</div>
+		</div>
+		<div class="input_li clearfix my_brand" >
+			<span class="fl">品牌车</span>
+			<div class="fr">
+				<input class="my_brand_info" type="text" placeholder="请选择" disabled="disabled" />
+				<i class="iconfont icon-iconfontright"></i>
+			</div>
+		</div>
+
+		<div class="input_li clearfix mycar_address">
+			<span class="fl">车辆所在地</span>
+			<div class="fr">
+				<input class="car_address" type="text" placeholder="请选择" disabled="disabled" />
+				<i class="iconfont icon-iconfontright"></i>
+			</div>
+		</div>
+		<div class="input_li clearfix ">
+			<span class="fl">初次上牌时间</span>
+			<div class="fr demos " id="demo_default">
+				<input class="brand_time" type="text" placeholder="请选择" name="test_default" id="test_default" />
+				<i class="iconfont icon-iconfontright"></i>
+			</div>
+		</div>
+
+		<div class="input_li clearfix plan">
+			<span class="fl">后续计划</span>
+			<div class="fr">
+				<input class="Myplan" type="text" placeholder="请选择" disabled="disabled" />
+				<i class="iconfont icon-iconfontright"></i>
+			</div>
+		</div>
+		<div class="null"></div>
+		<button type="button" class="bottom_btn" >提交</button>
+
+	</form>
+	<style>
+		.layui-m-layercont {
+			padding: 0.3125rem;
+			text-align: left;
+			height:
+		}
+
+		.layui-m-layercont .active {
+			height: 6.25rem;
+			overflow-y: auto;
+		}
+
+		.supply .auto_li {
+			cursor: pointer;
+		}
+	</style>
+
+	<div class="null null_info"></div>
+	
+</body>
+
+</html>

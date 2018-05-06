@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/good_list" defer async="true"></script> 
+</head>
+
+<body class="bg">
+	
+	<div class="container search_list">
+		<div class="search_cn">
+			<div class="search_hot">
+				<i class="iconfont icon-sousuo"></i>
+				<input type="text" placeholder="搜索感兴趣的商品" onclick="javascript:window.location.href='search1.html'" />
+			</div>
+		</div>
+		<div class="search_pr">
+			<div class="product_list goods_list">
+				<ul class="list">
+				</ul>
+				<div class="loading_more">
+					<div class="loading-time"><img src="../image/loadingImg.gif" /><span>努力加载中...</span></div>
+					<div class="loading_fish" style="display:none"><img src="../image/loading_fish.png" /><span>数据加载完毕</span></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script>
+		apiready = function() {
+
+			api.setWinAttr({
+				scrollEnabled: true
+			});
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+
+			var $index = api.pageParam.id;
+			
+			$(".header span").text(arr[$index].name);
+			var param2 = {
+				IsShow: arr[$index].IsShow,
+				PageIndex: 1,
+			}
+			GetProductList(param2);
+			//底部刷新数据
+			api.addEventListener({
+				name: 'scrolltobottom',
+				extra: {
+					threshold: 0
+				}
+			}, function(ret, err) {
+
+				var page = $(".product_list .list").attr("data-page");
+				var param2 = {
+					IsShow: arr[$index].IsShow,
+					PageIndex: page,
+				}
+				if ($(".product_list .list").attr("bool-page") == 'true') {
+
+					$(".loading_more").find(".loading-time").show();
+					$(".loading_more").find(".loading_fish").hide();
+					page++;
+					param2.PageIndex = page;
+					GetProductList(param2);
+				}
+			})
+
+		}
+
+
+	</script>
+</body>
+
+</html>

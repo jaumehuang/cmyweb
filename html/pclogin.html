@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>关于我们</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="pclogin" style="height:100%">
+	<div class="equipment"></div>
+	<header class="header">
+		<i class="iconfont icon-xiangzuo fl" onclick="openRoot()"></i>
+
+	</header>
+	<div class="container  ">
+		<img src="../image/pc.png" class="pcimg" />
+		<div class="pc_p">车漫游电脑端登录确认</div>
+		<div class="large_btn" onclick="PcLogin()">确认登录电脑端</div>
+		<div class="large_btn cancel" onclick="openRoot()">取消登录</div>
+	</div>
+	<script src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+	<script>
+		apiready = function() {
+
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+
+			};
+
+		};
+
+		function PcLogin() {
+
+			if (!$api.getStorage('userData') || $api.getStorage('userData').Phone == 'undefined') {
+				open_win('login');
+				return false;
+			}
+			api.showProgress({
+				title: '',
+				text: '加载中,请稍后...',
+				modal: false
+			});
+			var param = {
+				MemLoginId: $api.getStorage('userData').Phone,
+				Id: api.pageParam.id
+			}
+			api.ajax({
+				url: httpurl + "?action=QuerLoginCode",
+				method: 'post',
+				dataType: "json",
+				data: {
+					values: param
+				}
+			}, function(ret, err) {
+
+				api.hideProgress();
+				if (!ret.isError) {
+
+					openRoot();
+				} else {
+					alert(ret.Msg)
+				}
+			})
+		}
+	</script>
+
+</body>
+
+</html>

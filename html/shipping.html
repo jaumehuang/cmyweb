@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>配送方式</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/shipping" defer async="true"></script> 
+</head>
+
+<body style="height:100%;background:#fff">
+	
+	<form class="container invioce shipping">
+		<div class="invioce_p">
+			<div class="title">配送方式</div>
+			<ul class="ul_list clearfix">
+				<li class="li_li fl active" ship_fl="门店自提">
+					门店自提
+				</li>
+				<li class="li_li fl">
+					送货上门
+				</li>
+			</ul>
+
+		</div>
+		<div class="shipping_give ship_active storeList" data-li="dsd">
+			<div class="title">选择门店</div>
+			<ul class="shipping_list">
+
+			</ul>
+		</div>
+		<div class="shipping_give wuliuList">
+			<div class="title">选择物流</div>
+			<ul class="shipping_list">
+
+			</ul>
+		</div>
+		<button class="btn_in" type="button">确定</button>
+
+	</form>
+	
+	<script>
+		apiready = function() {
+
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+				api.showProgress({
+					title: '',
+					text: '加载中,请稍后...',
+					modal: false
+				});
+				storeList()
+			}
+
+		
+	</script>
+</body>
+
+</html>

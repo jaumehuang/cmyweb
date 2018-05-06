@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>钱包</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/wallet" defer async="true"></script> 
+</head>
+
+<body class="bg" style="background:#fff;">
+	
+	<div class="container set_up wallet">
+		<div class="user_wallet">
+			<div class="car_price">漫豆</div>
+			<div class="num">0.00</div>
+		</div>
+		<div class="input_in clearfix"   onclick="javascript:window.location.href='recharge.html'">
+			<span class="fl">充值</span>
+			<i class="iconfont icon-iconfontright fr"></i>
+		</div>
+		<div class="input_in clearfix"  onclick="javascript:window.location.href='Transferaccounts.html'">
+			<span class="fl">转账</span>
+			<i class="iconfont icon-iconfontright fr"></i>
+		</div>
+		<div class="input_in clearfix"  onclick="javascript:window.location.href='pay_password.html'">
+			<span class="fl">设置支付密码</span>
+			<i class="iconfont icon-iconfontright fr"></i>
+		</div>
+		<div class="input_in clearfix"  onclick="javascript:window.location.href='my_pay_record.html'">
+			<span class="fl">交易记录</span>
+			<i class="iconfont icon-iconfontright fr"></i>
+		</div>
+		<!--<div class="input_in clearfix" onclick="javascript:window.location.href='mybank.html'">
+			<span class="fl">绑定银行卡</span>
+			<i class="iconfont icon-iconfontright fr"></i>
+		</div>-->
+
+	</div>
+	<style>
+		.layui-m-layercont {
+			padding: 0.3125rem 0.625rem;
+			text-align: left;
+		}
+
+		.layui-m-layercont .pay_title {
+			font-size: 0.46875rem;
+			color: #333;
+		}
+
+		.layui-m-layercont .pay_list .list_li {
+			font-size: 0.40625rem;
+			margin-top: 0.625rem;
+		}
+
+		.layui-m-layerbtn span {
+			padding: 0 0.625rem;
+			text-align: right;
+		}
+
+		.layui-m-layerbtn span[yes] {
+			color: #333;
+			font-size: 0.40625rem;
+		}
+	</style>
+
+	<script>
+		
+
+		apiready = function() {
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+			
+			//监听充值结果
+			api.addEventListener({
+				name: 'recharge'
+			}, function(ret, err) {
+				if (ret) {
+					person();
+				}
+			});
+		};
+
+		
+	
+	</script>
+</body>
+
+</html>

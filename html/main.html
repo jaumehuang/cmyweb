@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/swiper.css" />
+	<style>
+	     html, body {
+        position: relative;
+        height: 100%;
+
+    }
+    body {
+
+
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    img{
+    height:100%;
+    width:100%;
+    }
+    .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: 10px;
+    left: 0;
+    width: 100%;}
+    .swiper-pagination-bullet{
+       height:15px;
+       width:15px;
+    }
+    .swiper-pagination-bullet{
+      background:#fff;
+    }
+	</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/swiper.min.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js" ></script>
+<script type="text/javascript" src="../script/commom.js"></script>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <script>
+
+    apiready = function() {
+
+      //初始化
+      api.ajax({
+           url: httpurl+"?action=GetStartPage",
+           method: 'get',
+           dataType: "json",
+    }, function(ret, err) {
+
+             var  str='';
+            if(!ret.isError){
+                var listArry=JSON.parse(ret.Msg);
+                for(var i=0;i<listArry.length;i++){
+                    str+='<div class="swiper-slide">';
+                    str+='<img src="'+listArry[i].Value+'" />';
+                    str+='</div>';
+                }
+                $(".swiper-wrapper").append(str);
+
+                var swiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    onSlideChangeEnd: function(swiper){
+                      if($(".swiper-pagination span").length-1==swiper.activeIndex){
+                          $(document).on("click",function(){
+                             $(".swiper-container").remove();
+
+                               api.closeFrame();
+
+                          });
+                          var time=setTimeout(function(){
+
+                             api.closeFrame();
+
+                          },3000);
+
+                      }
+
+                  }
+                });
+                if($(".swiper-pagination span").length==1){
+
+                    $(document).on("click",function(){
+                       $(".swiper-container").remove();
+
+                         api.closeFrame();
+                    });
+                    var time=setTimeout(function(){
+
+                       api.closeFrame();
+
+                    },3000);
+
+                }
+              }
+          });
+          $api.setStorage('StartPage',"page");
+    };
+    var frameJson = {
+    '0' : 'home',
+    '1' : 'buycar',
+    '2' : 'shopping',
+    '3' : 'person'
+  };
+  function openIndexFrames(index) {
+
+      var body = $api.dom('body');
+      var bodyPos = $api.offset(body);
+      var footer = $api.byId('footer');
+      var footerPos = $api.offset(footer);
+      api.openFrame({
+        name : frameJson[index],
+        url :  frameJson[index] + '.html',
+        bounces : false,
+        customRefreshHeader:'UIPullRefresh',
+        reload:true,
+
+      });
+      api.closeFrame({
+         name: 'main'
+      });
+    }
+    </script>
+</html>

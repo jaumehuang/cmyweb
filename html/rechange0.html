@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>充值</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/user/basic.css" />
+		<link rel="stylesheet" type="text/css" href="../css/user/style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	</head>
+
+	<body style="background: #fff;" class="recharge">
+		<header class="t-center t-size-14 bottom-line">
+			<span class="t-size-16">转账</span>
+		</header>
+	
+		<form id="rechange0">
+			<div class="title t-size-14">手机号码:</div>
+			<div class="input_in bottom-line">
+				<input class="re-money t-size-16" type="number"  ref="phone"/>
+			</div>
+			<div class="title t-size-14">充值金额:</div>
+			<div class="input_in bottom-line">
+				<div class="Symbol t-size-18">¥</div>
+				<input class="re-money t-size-16" type="number"  ref="num" v-model="changeNum"/>
+			</div>
+			<div class="get-money t-size-12">
+				 获得漫豆:<span class="c-red" ref="mynum"></span>漫豆
+			</div>
+			<button class="btn-very-large c-white btn-bg-bule t-size-18" type="button" @click="SubmitBtn">充值</button>
+			<div class="notes c-black t-size-12">
+				 注：1元=0漫豆
+			</div>
+		</form>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/axios.js"></script>
+		<script type="text/javascript" src="../script/js/rechange0.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>转账</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/ydui.css" />
+        <link rel="stylesheet" type="text/css" href="../css/user/basic.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/user/style.css" />
+        <link rel="stylesheet" href="../script/need/layer.css" />
+        <script src="../script/lib/require.js" data-main="../script/js/Transferaccounts" defer async="true"></script> 
+	</head>
+	<body  style="background: #fff;"  class="recharge">
+		  <div  class="person-photo t-center">
+		  	    <img src=""  class="info-img" style="display: inline-block;"/>
+		  	    <div class="t-size-14 name" ></div>
+		  </div>
+		  <form>
+			<div class="title t-size-14" style="margin-bottom:0.3125rem">手机号码:</div>
+			<div class="input_in bottom-line" style="padding:0;margin-bottom:0.3125rem">
+				<input class="phone t-size-16" type="number"  ref="phone"/>
+			</div>
+			<div class="title t-size-14" style="margin-bottom:0.3125rem">转账漫豆数量:</div>
+			<div class="input_in bottom-line" style="padding:0;margin-bottom:0.3125rem">
+				<input class="re-money t-size-16" type="number" />
+			</div>
+			<div class="get-money t-size-12" >
+				 转账漫豆:<span class="c-red change-num">0</span>漫豆
+			</div>
+			<button class="btn-very-large c-white btn-bg-bule t-size-18" type="button" id="J_OpenKeyBoard1">确认转账</button>
+			<div class="notes c-black t-size-12">
+				 用户余额: <span class="c-red AdvancePayment"></span>漫豆
+			</div>
+		</form>
+		<div class="m-keyboard" id="J_KeyBoard1"></div>
+	</body>
+</html>

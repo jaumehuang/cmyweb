@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../css/swiper.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<script src="../script/lib/require.js" data-main="../script/js/details1" defer async="true"></script> 
+    <style>
+    	   .totast{
+    	   	 padding:0.15625rem;
+    	   	 background: rgba(0,0,0,0.7);
+    	   	 border-radius:2px;
+    	   	 color:#fff;
+    	   	 font-size:0.375rem;
+    	   	 z-index: 99999999;
+    	   	 position:absolute;bottom:0;transform: translateX(-50%);left:50%;
+    	   	 -webkit-transform: translateX(-50%);
+    	   }
+    	   footer .cart,footer .buyshop{
+    	   	 cursor: pointer;
+    	   }
+    </style>
+</head>
+
+<body class="bg detail1">
+	
+	<div class="container">
+
+		<div class="details_title clearfix details_main ">
+
+		</div>
+		<div class="details_title clearfix guige">
+			<div class="title_item fl">
+				<span class="weight">已选择：</span>
+				<span class="weight selected"></span>
+			</div>
+
+			<i class="iconfont icon-iconfontright fr"></i>
+
+		</div>
+		<div class="details_title clearfix" onclick="">
+			<div class="fl item">
+				<img src="../image/d1.png" class="d_img fl" />
+				<span class="fl">七天无理由退换货</span>
+			</div>
+			<div class="fl item">
+				<img src="../image/d2.png" class="d_img fl" />
+				<span class="fl">正品保障</span>
+			</div>
+			<div class="fr">
+				<img src="../image/d3.png" class="d_img fl" />
+				<span class="fl">漫豆回馈</span>
+			</div>
+		</div>
+		<div class="details_title ">
+			<div class="clearfix">
+				<div class="title_item">
+					<span class="weight">用户点评</span> (
+					<span class="love"></span>满意度)
+				</div>
+				<div class="more fr">
+					共<span class=""></span>条
+				</div>
+			</div>
+			<div class="user_list">
+
+			</div>
+			<div class="btn_say">查看全部评论</div>
+		</div>
+		<div class="details_title">
+			<div class="title_details">详情介绍</div>
+			<div class="title_bottom"></div>
+		</div>
+		<!--底部导航栏-->
+		<div class="footer details_foot">
+			<div href="#" class="item item_li clearfix">
+				<a href="https://cmyqc.kf5.com/kchat/33756?from=%E5%9C%A8%E7%BA%BF%E6%94%AF%E6%8C%81" class="service fl" >
+					<i class="iconfont icon-service"></i>
+					<div class="show-p">客服</div>
+				</a>
+				<a href="javascript:" class="call_phone fl">
+					<i class="iconfont icon-fav"></i>
+					<div class="show-p">收藏</div>
+				</a>
+			</div>
+
+			
+		</div>
+		
+	</div>
+	<div class="null">
+
+	</div>
+	<div class="mask"></div>
+	<div class="collection_p">取消收藏</div>
+	<div class="pop_format" hidden="hidden"></div>
+	<style>
+		body .layui-m-layer .layui-m-layer-footer {
+			position: absolute;
+			/*height: 11.34375rem;*/
+			background: #fff;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.layui-m-layerchild {
+			border-radius: 0;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont {
+			position: absolute;
+			top: 1.22rem;
+			left: 0;
+			padding: 0;
+			padding: 0.375rem;
+			right: 0;
+			overflow-x: hidden;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .specs .title {
+			text-align: left;
+			color: #333;
+			font-size: 0.4375rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .specs .list .list_li {
+			width: 20%;
+			text-align: center;
+			border: 0.03125rem solid #cfcfcf;
+			border-radius: 0.125rem;
+			font-size: 0.375rem;
+			color: #666;
+			height: 0.78125rem;
+			line-height: 0.78125rem;
+			margin-top: 0.3125rem;
+			margin-right: 4.32%;
+			cursor: pointer;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .specs .list {
+			padding-bottom: 0.3125rem;
+			border-bottom: 0.03125rem solid #cdcdcd;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .specs .list .active {
+			color: #019df2;
+			border-color: #019df2;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .num_item {
+			margin-top: 0.3125rem;
+			font-size: 0.4375rem;
+			color: #333;
+			height: 0.90625rem;
+			text-align: left;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .num_item .title {
+			text-align: left;
+			line-height: 0.90625rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .num_item .red_num {
+			color: #d20000;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .num_item div.fr {
+			height: 0.90625rem;
+			border: 0.03125rem solid #cfcfcf;
+			border-radius: 0.125rem;
+			width: 3.65625rem;
+			display: flex;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .num_item div.fr i,
+		input {
+			height: 0.90625rem;
+			width: 33.3333%;
+			text-align: center;
+			line-height: 0.90625rem;
+			font-size: 0.46875rem;
+			cursor: pointer;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont footer {
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			left: 0;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont footer div {
+			width: 50%;
+			height: 1.40625rem;
+			line-height: 1.40625rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont footer .cart {
+			background: #ff9a00;
+			color: #fff;
+			font-size: 0.4375rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont footer .buyshop {
+			background: #d20000;
+			color: #fff;
+			font-size: 0.4375rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layercont .num_item div.fr input {
+			border-right: 0.03125rem solid #cfcfcf;
+			border-left: 0.03125rem solid #cfcfcf;
+		}
+
+		.layui-m-layer-footer .layui-m-layerbtn {
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: #019df2;
+			border-radius: 0;
+			height: 1.25rem;
+			font-size: 0.46875rem;
+			line-height: 1.25rem;
+			color: #fff;
+		}
+
+		.layui-m-layer-footer .layui-m-layerbtn h5 {
+			font-size: 0.46875rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layerbtn span[no] {
+			color: #fff;
+			border-radius: 0;
+			font-size: 0.46875rem;
+			float: left;
+			background: #019df2;
+			border: none;
+			margin-left: 0.375rem;
+		}
+
+		.layui-m-layer-footer .layui-m-layerbtn span[yes] {
+			color: #fff;
+			margin-top: 0;
+			float: right;
+			border-radius: 0;
+			font-size: 0.46875rem;
+			background: #019df2;
+			margin-right: 0.375rem;
+		}
+
+		.mask {
+			position: fixed;
+			right: 0;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, .7);
+			pointer-events: auto;
+			z-index: 500;
+			display: none;
+		}
+
+		.collection_p {
+			position: fixed;
+			top: 17.15625rem;
+			width: 30%;
+			padding: 0.1875rem;
+			border-radius: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			-webkit-transform: translateX(-50%);
+			color: #666;
+			text-align: center;
+			background-color: rgba(255, 255, 255, .8);
+			z-index: 600;
+			display: none;
+		}
+
+		.num_item .red_price {
+			color: #d20000;
+		}
+
+		.layui-m-layer-footer .null {
+			margin-top: 60px;
+		}
+	</style>
+
+
+	<!--<script src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/swiper.min.js"></script>
+	<script src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>
+	<script src="../script/commom.js"></script>-->
+	<script>
+//		$(function() {
+//
+
+//		});
+//
+//		apiready = function() {
+//
+//			api.setWinAttr({
+//				scrollEnabled: true
+//			});
+//			var systemType = api.systemType;
+//			if (systemType == "ios") {
+//
+//				$(".equipment").css("background", '#fff');
+//			};
+//
+//			var guid = api.pageParam.id;
+//			api.showProgress({
+//				title: '',
+//				text: '加载中,请稍后...',
+//				modal: false
+//			});
+//			//轮播图
+//			auto_banner(guid);
+//			// 商品详情
+//			GetProduct(guid);
+//			//评论
+//			comment(guid);
+//			//更多评论
+//			moreComment(guid);
+//
+//			collection(guid)
+//				//收藏
+//			api.addEventListener({
+//				name: 'isLogin'
+//			}, function(ret, err) {
+//				if (ret) {
+//					collection(guid);
+//				}
+//			});
+//
+//
+//		}
+//
+//
+
+
+//
+//		//图片放大
+//		function imageBrowser(ImgUrl) {
+//
+//			var imageBrowser = api.require('imageBrowser');
+//			imageBrowser.openImages({
+//				imageUrls: [ImgUrl],
+//				showList: 'false',
+//				tapClose: 'false'
+//
+//			});
+//		};
+//		//评论
+//		function comment(guid) {
+//
+//			api.ajax({
+//				url: httpurl + "?action=GetProductBaskOrderCount&ProductGuid=" + guid,
+//				method: 'get',
+//				dataType: "json",
+//
+//			}, function(ret, err) {
+//
+//				if (!ret.isError) {
+//					var listArry = JSON.parse(ret.Msg);
+//					$(".title_item .love ").text(listArry[0].CommentRete + "%");
+//					$(".more span").text(listArry[0].CommentCount);
+//					//晒单
+//					var param = {
+//						PageIndex: 1,
+//						PageCount: 1,
+//						ProductGuid: guid,
+//					}
+//					api.ajax({
+//						url: httpurl + "?action=getproductbaskorder",
+//						method: 'get',
+//						dataType: "json",
+//						data: {
+//							values: param,
+//						}
+//					}, function(ret, err) {
+//						// alert(ret.Msg);
+//
+//						if (!ret.isError) {
+//							str = '';
+//							var arryList = JSON.parse(ret.Msg);
+//							str += '<div class="user clearfix">';
+//							str += '<img class="fl" src="' + arryList[0].Photo + '"/>';
+//							str += '<div class="party fl">';
+//							str += '<span class="account weight">' + arryList[0].RealName + '</span>';
+//							str += '<span class="txt">' + arryList[0].CreateTime + '</span>';
+//							str += '</div></div>';
+//							str += '<div class="say">' + arryList[0].Content + '</div>';
+//							$(".user_list").append(str);
+//						} else if (err) {
+//
+//							api.toast({
+//								msg: '网络错误',
+//								duration: 2000,
+//								location: 'middle'
+//							});
+//
+//						}
+//
+//					})
+//
+//
+//				} else if (err) {
+//
+//					api.toast({
+//						msg: '网络错误',
+//						duration: 2000,
+//						location: 'middle'
+//					});
+//
+//				}
+//			})
+//		}
+//		//查看跟多评论
+//		function moreComment(guid) {
+//
+//			$(".btn_say").on("click", function() {
+//
+//				open_win('comment', guid)
+//
+//			})
+//		}
+//
+
+
+	</script>
+</body>
+
+</html>

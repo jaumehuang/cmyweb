@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../script/need/layer.css" />
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="register_bg">
+	<div class="equipment"></div>
+	<header class="header">
+		<i class="iconfont icon-xiangzuo fl" onclick="api.closeWin()"></i>
+		<span>绑定已有账号</span>
+	</header>
+	<div class="container register">
+		<form>
+
+			<div class="input_text">
+				<input type="text" placeholder="请输入账号" class="phone" />
+				<input type="password" placeholder="请输入密码" class="password1" />
+
+			</div>
+			<button class="btn_in" type="button">
+					绑定登录
+				</button>
+			<div class="ThreeLogin" onclick="BindLogin()">
+				没有账号,请点击注册.
+			</div>
+		</form>
+
+	</div>
+	<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+	<script type="text/javascript" src="../script/layer.js"></script>
+	<script>
+		apiready = function() {
+
+			var systemType = api.systemType;
+			if (systemType == "ios") {
+
+				$(".equipment").css("background", '#fff');
+			};
+
+			// //提交数据
+			register();
+
+		}
+
+		//数据提交
+		function register() {
+
+			//验证开始
+			$(".btn_in").on("click", function() {
+				//输入框不能为空
+				var $phone = $(".phone").val();
+				var $password1 = $(".password1").val();
+				var param = {
+					Phone: $phone,
+					Pwd: $password1,
+				}
+				var info = JSON.parse(api.pageParam.id);
+				//QQ
+				if (info.Type == 1) {
+					param.Name = info.nickname;
+					param.Photo = info.figureurl_qq_2;
+					if (info.gender == '男') {
+						param.Sex = 1;
+					} else {
+						param.Sex = 0;
+					}
+					param.SecondId = info.openId;
+					param.SecondType = info.Type;
+				};
+				//weixin
+				if (info.Type == 7) {
+
+					param.Name = info.nickname;
+					param.Photo = info.headimgurl;
+					if (info.gender == '男') {
+						param.Sex = 1;
+					} else {
+						param.Sex = 0;
+					}
+					param.SecondId = info.unionid;
+					param.SecondType = info.Type;
+				}
+				//weibo
+				if (info.Type == 3) {
+					param.Name = info.name;
+					param.Photo = info.profile_image_url;
+					if (info.gender == 'm') {
+						param.Sex = 1;
+					} else {
+						param.Sex = 0;
+					}
+					param.SecondId = info.openId;
+					param.SecondType = info.Type;
+				};
+
+				if ($phone.length == 0 || $password1.length == 0) {
+					layer.open({
+						content: '手机号、验证码、或密码为空',
+						btn: '确定'
+					});
+				} else if (!(/^.{6,20}$/).test($password1) || (/[\u4e00-\u9fa5]+/ig).test($password1)) {
+					layer.open({
+						content: '6~20位数的密码,不包含中文。',
+						btn: '确定'
+					});
+				} else {
+					api.showProgress({
+						title: '',
+						text: '加载中,请稍后...',
+						modal: false
+					});
+
+					api.ajax({
+						url: httpurl + "?action=MemberBind",
+						method: 'post',
+						dataType: "json",
+						data: {
+							values: param,
+						}
+
+					}, function(ret, err) {
+						api.hideProgress();
+
+						if (!ret.isError) {
+							var list = JSON.parse(ret.Msg);
+							var param2 = {
+								Phone: list.MemLoginId,
+							}
+							$api.setStorage('userData', param2);
+
+							api.sendEvent({
+								name: 'isLogin',
+								extra: {
+									isLogin: true
+								}
+							});
+							//设置头像和昵称的判断,设置默认配置
+							var SetObj = {
+								IsPhoto: false,
+								IsName: false
+							};
+							//保存配置数据
+							$api.setStorage('IsSet', SetObj);
+							//跳转到个人设置
+							open_win("set_person");
+
+						} else if (err) {
+							api.toast({
+								msg: '网速不好',
+								duration: 2000,
+								location: 'middle'
+							});
+						} else {
+							layer.open({
+								content: ret.Msg,
+								btn: '确定'
+							});
+						}
+
+					});
+				}
+			})
+		}
+		//立即绑定数据
+		function BindLogin() {
+
+			open_win("third_login", api.pageParam.id);
+
+		};
+	</script>
+</body>
+
+</html>

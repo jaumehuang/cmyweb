@@ -1,0 +1,531 @@
+@charset "UTF-8";
+
+/*          作者：1332204564@qq.com/jaume.huang
+            时间：2018-03-31
+            描述:车漫游管理人样式表
+ */
+
+
+/*登录*/
+
+.login {
+	padding: 0 0.375rem;
+}
+
+.login input {
+	display: block;
+	width: 100%;
+	padding-top: 0.3125rem;
+	padding-bottom: 0.3125rem;
+	margin-top: 0.3125rem;
+}
+
+.login input:nth-child(2) {
+	margin-bottom: 1.5625rem;
+}
+
+
+/*订单列表*/
+
+.order .navlist,
+.order-details .navlist {
+	width: 100%;
+	display: -webkit-box;
+	background: #f9f9f9;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 10000;
+}
+
+.order .navlist a.nav-li,
+.order-details .navlist a.nav-li {
+	display: block;
+	-webkit-box-flex: 1;
+	flex: 1;
+	padding: 0.3125rem 0;
+	position: relative;
+}
+
+.order .navlist a.active,
+.order-details .navlist a.active {
+	color: #0090ff;
+}
+
+.order .navlist a.active:after,
+.order-details .navlist a.active:after {
+	content: '';
+	display: block;
+	width: 1.1875rem;
+	height: 2px;
+	background: #0090ff;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+
+.order .list .list-li .title,
+.order-details .list .list-li .title {
+	padding: 0 0.375rem;
+	background: #fff;
+	display: -webkit-box;
+	width: 100%;
+}
+
+.order .list .list-li .title div,
+.order-details .list .list-li .title div {
+	display: block;
+	-webkit-box-flex: 1;
+	flex: 1;
+	padding: 0.3125rem 0;
+}
+
+.order .list .list-li .total,
+.order-details .list .list-li .total {
+	padding: 0.3125rem 0.375rem;
+	background: #fff;
+}
+
+.order .list .list-li .total span,
+.order-details .list .list-li .total span {
+	padding-left: 0.25rem;
+}
+
+.order .list .list-li .btn-group,
+.order-details .list .list-li .btn-group {
+	background: #fff;
+	padding: 0.3125rem 0.375rem;
+}
+
+.order .list .list-li .btn-group .c-red,
+.order-details .list .list-li .btn-group .c-red {
+	margin-top: 0.1875rem;
+}
+
+.order .list .list-li .btn-group button,
+.order-details .list .list-li .btn-group button {
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	padding: 0.15625rem;
+}
+
+.order .pr-list,
+.order-details .pr-list {
+	padding: 0 0.375rem;
+	background: #eff0f4;
+}
+
+.order .pr-list .pr-li,
+.order-details .pr-list .pr-li {
+	display: -webkit-box;
+	width: 100%;
+	padding: 0.3125rem 0;
+}
+
+.order .pr-list .pr-li img,
+.order-details .pr-list .pr-li img {
+	height: 2.3125rem;
+	width: 3.125rem;
+	border-radius: 4px;
+}
+
+.order .pr-list .pr-li .content,
+.order-details .pr-list .pr-li .content {
+	-webkit-box-flex: 1;
+	flex: 1;
+	padding-left: 0.25rem;
+}
+
+
+/*订单详情*/
+
+.order-details .qcode {
+	padding: 0.375rem;
+}
+
+.order-details .qcode .qcode_bg {
+	background: #fff;
+	border-radius: 4px;
+	padding-top: 0.625rem;
+	padding-bottom: 0.625rem;
+}
+
+.order-details .qcode .code-img {
+	height: 3.28125rem;
+	width: 3.28125rem;
+	margin: 0.46875rem 0;
+}
+
+.order-details .order-state {
+	height: 3.125rem;
+	background: #019df2;
+}
+
+.order-details .order-state .order-img {
+	height: 1.125rem;
+	width: 1.125rem;
+	margin-top: 0.6875rem;
+	margin-bottom: 0.3125rem;
+}
+
+.order-details .title {
+	background: #fff;
+	padding: 0.3125rem 0.375rem;
+}
+
+.order-details .pr-list {
+	background: #fff;
+}
+
+.order-details .pr-list .pr-li {
+	border-bottom: 0.3125rem solid #eff0f4;
+}
+
+.order-details .pr-list .pr-li:last-child {
+	border-bottom: none;
+}
+
+.order-details .pr-list .commont {
+	margin-top: 0.3125rem;
+}
+
+.order-details .pr-list .commont .price {
+	margin-top: 0.125rem;
+}
+
+.order-details .pr-list .btn-commont {
+	border: 0.03125rem solid #cc0001;
+	border-radius: 4px;
+}
+
+.order-details .total {
+	background: #fff;
+	padding: 0.3125rem 0.375rem;
+}
+
+.order-details .info-list {
+	margin-top: 0.3125rem;
+	background: #fff;
+	padding: 0 0.375rem;
+}
+
+.order-details .info-list .info-li {
+	padding: 0.3125rem 0;
+}
+
+.order-details .info-list .title {
+	padding-left: 0;
+}
+
+.order-details .foot-btn button {
+	width: 50%;
+	line-height: 1.1875rem;
+}
+
+
+/*充值*/
+
+.recharge .person_info,
+.order_confirm .person_info {
+	height: 1.8125rem;
+	background: #019df2;
+	padding: 0.3125rem 0.375rem;
+}
+
+.recharge .person_info img,
+.order_confirm .person_info img {
+	height: 1.1875rem;
+	width: 1.1875rem;
+	border-radius: 50%;
+}
+
+.recharge .person_info .name,
+.order_confirm .person_info .name {
+	padding-left: 0.125rem;
+	line-height: 1.1875rem;
+}
+
+.recharge .person_info .money,
+.order_confirm .person_info .money {
+	line-height: 1.1875rem;
+}
+
+.recharge .person-photo,
+.order_confirm .person-photo {
+	margin-top: 0.46875rem;
+}
+
+.recharge .person-photo .info-img,
+.order_confirm .person-photo .info-img {
+	height: 1.125rem;
+	width: 1.125rem;
+	border-radius: 50%;
+	margin-bottom: 0.25rem;
+}
+
+.recharge form,
+.order_confirm form {
+	padding: 0 0.375rem;
+	margin-top: 0.6875rem;
+}
+
+.recharge form .input_in,
+.order_confirm form .input_in {
+	display: -webkit-box;
+	width: 100%;
+	padding: 0.375rem 0;
+}
+
+.recharge form .input_in .Symbol,
+.order_confirm form .input_in .Symbol {
+	width: 0.625rem;
+}
+
+.recharge form .input_in .re-money,
+.order_confirm form .input_in .re-money {
+	display: block;
+	-webkit-flex: 1;
+	flex: 1;
+	height: 0.8rem;
+}
+
+.recharge form .notes,
+.order_confirm form .notes {
+	margin-top: 0.3125rem;
+}
+
+.recharge form .get-money,
+.order_confirm form .get-money {
+	margin-top: 0.3125rem;
+	margin-bottom: 1.09375rem;
+}
+
+
+/*流水*/
+
+.Flowing .my-titme {
+	padding: 0.3125rem 0.375rem;
+	background: #fff;
+}
+
+.Flowing .my-titme input {
+	width: 4rem;
+	padding: 0.25rem;
+	border: 1px solid #e5e5e5;
+}
+
+.Flowing .fw-list .fw-li .title {
+	padding: 0.3125rem 0.375rem;
+	background: #eff0f4;
+}
+
+.Flowing .fw-list .pr-list {
+	padding: 0 0.375rem;
+	background: #fff;
+}
+
+.Flowing .fw-list .pr-list .pr-li {
+	padding: 0.3125rem 0;
+}
+
+.Flowing .fw-list .pr-list .pr-li img {
+	height: 1.1875rem;
+	width: 1.1875rem;
+	border-radius: 50%;
+}
+
+.Flowing .fw-list .pr-list .pr-li .main-content {
+	padding-left: 0.25rem;
+}
+
+.Flowing .fw-list .pr-list .pr-li .num {
+	line-height: 1.1875rem;
+}
+
+.Flowing .fw-list .pr-list .pr-li:last-child {
+	border-bottom: none;
+}
+
+.order_confirm .header-top {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000;
+}
+
+.order_confirm .input_in {
+	padding: 0 0.375rem;
+	background: #019df2;
+	padding-bottom: 0.3125rem;
+}
+
+.order_confirm .input_in input {
+	height: 0.9375rem;
+	width: 8rem;
+	padding-left: 0.25rem;
+}
+
+.order_confirm .pr-list {
+	margin-top: 4.4375rem;
+}
+
+.order_confirm .pr-list .pr-li {
+	display: -webkit-box;
+	width: 100%;
+	background: #FFF;
+	padding: 0.3125rem 0.375rem;
+}
+
+.order_confirm .pr-list .pr-li .checked {
+	width: 0.9375rem;
+	position: relative;
+}
+
+.order_confirm .pr-list .pr-li .checked input {
+	width: 0.625rem;
+	height: 0.625rem;
+	position: absolute;
+	top: 0.8rem;
+	opacity: 0;
+}
+
+.order_confirm .pr-list .pr-li .checked i.icon {
+	display: block;
+	margin-top: 0.8rem;
+	height: 0.625rem;
+	width: 0.625rem;
+	background: url(../image/nochecked.png) no-repeat center;
+	background-size: contain;
+}
+
+.order_confirm .pr-list .pr-li .checked input:checked+i.icon {
+	background: url(../image/checked.png) no-repeat center;
+	background-size: contain;
+}
+
+.order_confirm .pr-list .pr-li img {
+	width: 3.125rem;
+	height: 2.3125rem;
+}
+
+.order_confirm .pr-list .pr-li .content {
+	-webkit-box-flex: 1;
+	flex: 1;
+	padding-left: 0.25rem;
+}
+
+.order_confirm .pr-list .pr-li .content .price {
+	margin-top: 0.15625rem;
+}
+
+.order_confirm .pr-list .pr-li .content .change-num {
+	width: 3rem;
+	display: -webkit-box;
+	border: 0.03125rem solid #cccccc;
+	border-radius: 4px;
+	padding: 0 0.125rem;
+}
+
+.order_confirm .pr-list .pr-li .content .change-num i {
+	display: block;
+	width: 0.9375rem;
+	height: 0.78125rem;
+	text-align: center;
+	line-height: 0.78125rem;
+}
+
+.order_confirm .pr-list .pr-li .content .change-num i.reduce {
+	border-right: 0.03125rem solid #ccc;
+}
+
+.order_confirm .pr-list .pr-li .content .change-num i.add {
+	border-left: 0.03125rem solid #ccc;
+}
+
+.order_confirm .pr-list .pr-li .content .change-num input {
+	-webkit-box-flex: 1;
+	display: block;
+}
+
+.order_confirm .footer-order {
+	height: 1.5625rem;
+}
+
+.order_confirm .footer-order .checked {
+	padding-left: 0.375rem;
+	height: 100%;
+	position: relative;
+	margin-right: 0.25rem;
+}
+
+.order_confirm .footer-order .checked input {
+	width: 0.625rem;
+	height: 0.625rem;
+	position: absolute;
+	top: 0.4375rem;
+	opacity: 0;
+}
+
+.order_confirm .footer-order .checked i {
+	display: block;
+	margin-top: 0.4375rem;
+	height: 0.625rem;
+	width: 0.625rem;
+	background: url(../image/nochecked.png) no-repeat center;
+	background-size: contain;
+}
+
+.order_confirm .footer-order .checked input:checked+i.icon {
+	background: url(../image/checked.png) no-repeat center;
+	background-size: contain;
+}
+
+.order_confirm .footer-order .total {
+	line-height: 1.5625rem;
+	height: 100%;
+}
+
+.order_confirm .footer-order .submit {
+	width: 33%;
+	height: 100%;
+	background: #c10000;
+	line-height: 1.5625rem;
+	text-align: center;
+	color: #fff;
+}
+
+
+/*我的二维码*/
+
+.myqcode {
+	background: #FFF;
+	margin: 0.375rem;
+	border-radius: 4px;
+	padding: 0.5rem;
+	position: relative;
+}
+
+.myqcode .my-info {
+	position: absolute;
+	left: 0.5rem;
+	top: 0.5rem;
+}
+
+.myqcode .my-info img {
+	height: 1.5625rem;
+	width: 1.5625rem;
+	margin-right: 0.25rem;
+	border-radius: 50%;
+}
+
+.myqcode .code {
+	height: 3.3125rem;
+	width: 3.3125rem;
+	margin-top: 2.4375rem;
+}
+
+.myqcode .money-text {
+	margin-top: 0.625rem;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>车漫游</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../css/swiper.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="detail1 detail2" style="height:100%;background:#fff;">
+	<div class="equipment"></div>
+	<header class="header">
+		<i class="iconfont icon-xiangzuo fl" onclick="api.closeWin()"></i>
+		<span>二维码</span>
+
+	</header>
+	<div class="container code">
+		<div class="show_img" style="padding-top:1.25rem;">
+			<img src="" />
+			<div class="code_t">扫一扫上面的二维码，成为您的下属或</br>查看商品详情</div>
+		</div>
+		<!-- <button class="btn_in" onclick="SavePhoto()">保存到手机</button> -->
+		<button class="btn_in" onclick="share()" type="button" style="margin-top:0.3125rem">分享给好友</button>
+	</div>
+	<canvas id="myCanvas"></canvas>
+	<script src="../script/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/commom.js"></script>
+	<script>
+		apiready = function() {
+
+				var systemType = api.systemType;
+				if (systemType == "ios") {
+
+					$(".equipment").css("background", '#fff');
+				};
+
+				//  var ProductGuid=api.pageParam.id;
+				GetCode();
+
+			}
+			//获取商品二维码
+		function GetCode() {
+
+			api.showProgress({
+				title: '',
+				text: '数据加载中,请稍后...',
+				modal: false
+			});
+			if ($api.getStorage('userData').Phone != 'undefined' && $api.getStorage('userData')) {
+
+				var param = {
+						MemLoginId: $api.getStorage('userData').Phone
+					}
+					//  alert(param.MemLoginId);
+				api.ajax({
+					url: httpurl + "?action=GetMember",
+					method: 'get',
+					dataType: "json",
+					timeout: 10,
+					data: {
+						values: param,
+					}
+
+				}, function(ret, err) {
+					// alert(ret.Msg)
+					if (!ret.IsError) {
+						var arr = api.pageParam.id.split("&");
+						var arrList = JSON.parse(ret.Msg);
+						var param2 = {};
+						param2.ProductGuid = arr[0];
+						param2.ProductType = arr[1];
+						param2.Id = arrList[0].Id;
+						api.ajax({
+							url: httpurl + "?action=QrCode",
+							method: 'get',
+							dataType: "json",
+							data: {
+								values: param2,
+							}
+						}, function(ret, err) {
+							api.hideProgress();
+
+							if (ret) {
+
+								$(".code .show_img img").attr('src', ret.Msg);
+
+							}
+
+						})
+					} else {
+
+						api.toast({
+							msg: ret.Msg,
+							duration: 2000,
+							location: 'bottom'
+						});
+					}
+				});
+			}
+		}
+
+
+		//分享朋友圈
+		function share() {
+			var dialogBox = api.require('dialogBox');
+			dialogBox.actionMenu({
+				rect: {
+					h: 240
+				},
+				texts: {
+					cancel: '取消'
+				},
+				items: [{
+					text: '微信好友',
+					icon: 'widget://image/weixin_L.png'
+				}, {
+					text: '微信朋友圈',
+					icon: 'widget://image/wei_friend.png'
+				}],
+				styles: {
+					bg: '#FFF',
+					column: 2,
+					itemText: {
+						color: '#000',
+						size: 14,
+						marginT: 8
+					},
+					itemIcon: {
+						size: 60
+					},
+					cancel: {
+						bg: '#0090ff',
+						color: '#fff',
+						h: 50,
+						size: 16
+					}
+				}
+			}, function(ret) {
+				//  eventType: 'cancel',
+				if (ret.eventType == 'cancel') {
+					dialogBox.close({
+						dialogName: 'actionMenu'
+					});
+				}
+
+				if (ret.index == 0) {
+					var wx = api.require('wx');
+					wx.shareWebpage({
+						apiKey: 'wx14291a80e909e8e2',
+						scene: 'session',
+						title: api.pageParam.id.split("&")[2],
+						description: '我在车漫游发现了不错的商品,赶快来看看吧',
+						thumb: 'widget://image/cmy.png',
+						contentUrl: pathUrl + $api.getStorage('userData').Id
+					}, function(ret, err) {
+
+						dialogBox.close({
+							dialogName: 'actionMenu'
+						});
+						if (ret.status) {
+							api.toast({
+								msg: '分享成功',
+								duration: 2000,
+								location: 'bottom'
+							});
+						} else {
+
+							api.toast({
+
+								msg: '分享失败',
+								duration: 2000,
+								location: 'bottom'
+							});
+						}
+
+					});
+				}
+
+				if (ret.index == 1) {
+
+					var wx = api.require('wx');
+					wx.shareWebpage({
+						apiKey: 'wx14291a80e909e8e2',
+						scene: 'timeline',
+						title: api.pageParam.id.split("&")[2],
+						description: '我在车漫游发现了不错的商品,赶快来看看吧',
+						thumb: 'widget://image/cmy.png',
+						contentUrl: pathUrl + $api.getStorage('userData').Id
+					}, function(ret, err) {
+
+						dialogBox.close({
+							dialogName: 'actionMenu'
+						});
+						if (ret.status) {
+							api.toast({
+								msg: '分享成功',
+								duration: 2000,
+								location: 'bottom'
+							});
+						} else {
+
+							api.toast({
+
+								msg: '分享失败',
+								duration: 2000,
+								location: 'bottom'
+							});
+						}
+					});
+				}
+
+			});
+		}
+	</script>
+
+</body>
+
+</html>
